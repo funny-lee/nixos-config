@@ -2,7 +2,6 @@
 {
   imports = [
   ./clash.nix
-  ./opt.nix
   ./singleton_web_apps.nix
   ];
 
