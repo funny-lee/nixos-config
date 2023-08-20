@@ -8,7 +8,19 @@
   # 注意修改这里的用户名与用户目录
   home.username = "fll";
   home.homeDirectory = "/home/fll";
-    # 直接将当前文件夹的配置文件，链接到 Home 目录下的指定位置
+
+  programs.neovim.nvimdots = {
+    enable = true;
+    setBuildEnv = true;
+    withBuildTools = true;
+    withHaskell = true; # If you want to use Haskell.
+    withGo = true;
+    withRust = true;
+    extraHaskellPackages = hsPkgs: []; # Configure packages for Haskell (nixpkgs.haskellPackages).
+    extraDependentPackages = with pkgs; []; # Properly setup the directory hierarchy (`lib`, `include`, and `pkgconfig`).
+  };
+  
+  # 直接将当前文件夹的配置文件，链接到 Home 目录下的指定位置
   # home.file.".config/i3/wallpaper.jpg".source = ./wallpaper.jpg;
 
   # 递归将某个文件夹中的文件，链接到 Home 目录下的指定位置
@@ -136,9 +148,10 @@
     enable = true;
     # 自定义配置
     settings = {
-      env.TERM = "xterm-256color";
+     # env.TERM = "xterm-256color";
     #  import = [ /home/fll/.config/alacritty/alacritty.yml ];
-      font = { size = 14.0; };
+      home.file."alacritty/alacritty.yml".source = ./alacritty.yml;
+     # font = { size = 14.0; };
       shell = {
         program = "${pkgs.tmux}/bin/tmux";
         args = [ "new-session" "-t" "main" ];
