@@ -216,7 +216,8 @@
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
   ];
-  # conpile
+  # compile
+  
   programs.nix-ld.enable = true;
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

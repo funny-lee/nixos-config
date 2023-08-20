@@ -1,4 +1,4 @@
-{ config, pkgs, lib , stdenv , ... }:
+{ config, pkgs, lib , stdenv , inputs ,... }:
 {
   imports = [
   ./proxychains
@@ -9,17 +9,7 @@
   home.username = "fll";
   home.homeDirectory = "/home/fll";
 
-  programs.neovim.nvimdots = {
-    enable = true;
-    setBuildEnv = true;
-    withBuildTools = true;
-    withHaskell = true; # If you want to use Haskell.
-    withGo = true;
-    withRust = true;
-    extraHaskellPackages = hsPkgs: []; # Configure packages for Haskell (nixpkgs.haskellPackages).
-    extraDependentPackages = with pkgs; []; # Properly setup the directory hierarchy (`lib`, `include`, and `pkgconfig`).
-  };
-  
+    
   # 直接将当前文件夹的配置文件，链接到 Home 目录下的指定位置
   # home.file.".config/i3/wallpaper.jpg".source = ./wallpaper.jpg;
 
