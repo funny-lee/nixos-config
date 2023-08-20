@@ -1,11 +1,14 @@
 { config, pkgs, ... }:
-
 {
+  imports = [
+  ./clash.nix
+  ./singleton_web_apps.nix
+  ];
+
   # 注意修改这里的用户名与用户目录
   home.username = "fll";
   home.homeDirectory = "/home/fll";
-
-  # 直接将当前文件夹的配置文件，链接到 Home 目录下的指定位置
+    # 直接将当前文件夹的配置文件，链接到 Home 目录下的指定位置
   # home.file.".config/i3/wallpaper.jpg".source = ./wallpaper.jpg;
 
   # 递归将某个文件夹中的文件，链接到 Home 目录下的指定位置
@@ -77,7 +80,14 @@
     gawk
     zstd
     gnupg
-
+    gnumake
+    makefile2graph
+    remake
+    pandoc
+    nix-tree
+    flamegraph
+    universal-ctags
+    graphviz
     # nix related
     #
     # it provides the command `nom` works just like `nix`
@@ -152,11 +162,13 @@
 
     # TODO 设置一些别名方便使用，你可以根据自己的需要进行增删
     shellAliases = {
+      gc = "git clone";
       nvd = "neovide";
       k = "kubectl";
+      exa = "exa -all";
       urldecode = "python3 -c 'import sys, urllib.parse as ul; print(ul.unquote_plus(sys.stdin.read()))'";
       urlencode = "python3 -c 'import sys, urllib.parse as ul; print(ul.quote_plus(sys.stdin.read()))'";
-      setproxy = "export http_proxy = 'http://127.0.0.1:7890' && export https_proxy = 'http://127.0.0.1:7890'";
+      jo = "joshuto";
     };
   };
   # This value determines the Home Manager release that your
