@@ -1,7 +1,7 @@
 { config, pkgs, lib , stdenv , ... }:
 {
   imports = [
-  ./singleton_web_apps.nix
+  ./proxychains
   ];
 
   # 注意修改这里的用户名与用户目录
@@ -46,6 +46,7 @@
    # neovim
     neovide
     tmux
+    proxychains
     # archives
     zip
     xz
@@ -182,16 +183,5 @@
  
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
-  systemd.user.services.clash = {
-      Unit = {
-        Description = "Auto start clash";
-        After = ["network.target"];
-      };
-      Install = {
-        WantedBy = ["default.target"];
-      };
-      Service = {
-        ExecStart = "${pkgs.clash.outPath}/bin/clash -d /home/fll/Gist/clash";
-      };
-    };
+ 
 }
