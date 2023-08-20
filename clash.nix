@@ -14,7 +14,8 @@
         ExecStart = "${pkgs.clash.outPath}/bin/clash -d ${config.home.homeDirectory}/Gist/clash";
       };
     };
-    programs.bash.bashrcExtra = lib.optionalString (!config.isNixOnDroid) ''
+
+    programs.bash.bashrcExtra = ''
       # proxy
       ## default
       HTTP_PROXY="http://127.0.0.1:${toString config.proxyPort}/"

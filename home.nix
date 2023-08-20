@@ -1,7 +1,8 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib , stdenv , ... }:
 {
   imports = [
   ./clash.nix
+  ./opt.nix
   ./singleton_web_apps.nix
   ];
 
