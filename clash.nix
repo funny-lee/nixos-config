@@ -1,4 +1,4 @@
-{ config, pkgs, stdenv, lib, ... }:
+{ pkgs, stdenv, lib, ... }:
 {
   imports = [{
     home.packages = [pkgs.clash];
@@ -11,10 +11,10 @@
         WantedBy = ["default.target"];
       };
       Service = {
-        ExecStart = "${pkgs.clash.outPath}/bin/clash -d ${config.home.homeDirectory}/Gist/clash";
+        ExecStart = "${pkgs.clash.outPath}/bin/clash -d ${home.homeDirectory}/Gist/clash";
       };
     };
-
+    config.proxyPort = 7890;
     programs.bash.bashrcExtra = ''
       # proxy
       ## default
