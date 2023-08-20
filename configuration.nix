@@ -236,10 +236,10 @@
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
-  systemd.services.nix-daemon.environment = {
-     http_proxy = "http://127.0.0.1:7890";
-     https_proxy = "http://127.0.0.1:7890";
-   };
+ # systemd.services.nix-daemon.environment = {
+ #    http_proxy = "http://127.0.0.1:7890";
+ #    https_proxy = "http://127.0.0.1:7890";
+ #  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
