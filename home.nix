@@ -1,13 +1,24 @@
-{ config, pkgs, lib , stdenv , inputs ,... }:
+{ config, pkgs, lib , stdenv , inputs ,nvimdots ,... }:
 {
   imports = [
   ./proxychains
-  ./nvimdots.nix
+  ./tmux
+  #./nvimdots.nix
   ];
 
   # 注意修改这里的用户名与用户目录
   home.username = "fll";
   home.homeDirectory = "/home/fll";
+  # programs.neovim.nvimdots = {
+  #   enable = true;
+  #   setBuildEnv = true;
+  #   withBuildTools = true;
+  #   withHaskell = true; # If you want to use Haskell.
+  #   withGo = true;
+  #   withRust = true;
+  #   extraHaskellPackages = hsPkgs: []; # Configure packages for Haskell (nixpkgs.haskellPackages).
+  #   extraDependentPackages = with pkgs; []; # Properly setup the directory hierarchy (`lib`, `include`, and `pkgconfig`).
+  # };
 
     
   # 直接将当前文件夹的配置文件，链接到 Home 目录下的指定位置
@@ -61,7 +72,7 @@
     jq # A lightweight and flexible command-line JSON processor
     yq-go # yaml processer https://github.com/mikefarah/yq
     exa # A modern replacement for ‘ls’
-    fzf # A command-line fuzzy finder
+     # A command-line fuzzy finder
     fd
     # networking tools
     mtr # A network diagnostic tool
@@ -141,7 +152,7 @@
      # env.TERM = "xterm-256color";
     #  import = [ /home/fll/.config/alacritty/alacritty.yml ];
       home.file."alacritty/alacritty.yml".source = ./alacritty.yml;
-     # font = { size = 14.0; };
+      font = { size = 14.0; };
       shell = {
         program = "${pkgs.tmux}/bin/tmux";
         args = [ "new-session" "-t" "main" ];
@@ -153,7 +164,7 @@
     vimAlias = true;
     vimdiffAlias = true;
     defaultEditor = true;
-     
+
   };
   programs.bash = {
     enable = true;
@@ -168,6 +179,7 @@
     shellAliases = {
       gc = "git clone";
       nvd = "neovide";
+      nf = "neofetch";
       k = "kubectl";
       exa = "exa -all";
       urldecode = "python3 -c 'import sys, urllib.parse as ul; print(ul.unquote_plus(sys.stdin.read()))'";
@@ -175,6 +187,25 @@
       jo = "joshuto";
     };
   };
+  programs.fzf = {
+      enable = true;
+      # https://github.com/catppuccin/fzf
+      # catppuccin-mocha
+      colors = {
+        "bg+" = "#313244";
+        "bg" = "#1e1e2e";
+        "spinner" = "#f5e0dc";
+        "hl" = "#f38ba8";
+        "fg" = "#cdd6f4";
+        "header" = "#f38ba8";
+        "info" = "#cba6f7";
+        "pointer" = "#f5e0dc";
+        "marker" = "#f5e0dc";
+        "fg+" = "#cdd6f4";
+        "prompt" = "#cba6f7";
+        "hl+" = "#f38ba8";
+      };
+    };
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
   # when a new Home Manager release introduces backwards

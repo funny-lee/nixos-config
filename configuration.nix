@@ -65,7 +65,7 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
-
+  hardware.bluetooth.enable = true;
   # Set your time zone.
   time.timeZone = "Asia/Shanghai";
 
@@ -95,6 +95,7 @@
       source-code-pro
       hack-font
       jetbrains-mono
+      (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
     ];
   };
 
@@ -195,6 +196,7 @@
     isNormalUser = true;
     description = "fll";
     extraGroups = [ "networkmanager" "wheel" ];
+    shell = pkgs.zsh;
     packages = with pkgs; [
       firefox
       kate
@@ -241,6 +243,19 @@
  #    http_proxy = "http://127.0.0.1:7890";
  #    https_proxy = "http://127.0.0.1:7890";
  #  };
+   # Set environment variables
+   environment.variables = {
+        XDG_DATA_HOME = "$HOME/.local/share";
+        PASSWORD_STORE_DIR = "$HOME/.local/share/password-store";
+       # GTK_RC_FILES = "$HOME/.local/share/gtk-1.0/gtkrc";
+       # GTK2_RC_FILES = "$HOME/.local/share/gtk-2.0/gtkrc";
+        MOZ_ENABLE_WAYLAND = "1";
+       # ZK_NOTEBOOK_DIR = "$HOME/stuff/notes/";
+        EDITOR = "nvim";
+       # DIRENV_LOG_FORMAT = "";
+       # ANKI_WAYLAND = "1";
+       # DISABLE_QT5_COMPAT = "0";
+    };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
