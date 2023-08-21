@@ -1,7 +1,6 @@
 { pkgs, lib, config, ... }:
 with lib;
-in {
-
+{
     	home.packages = [
 	    pkgs.zsh
 	];
