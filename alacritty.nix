@@ -95,7 +95,10 @@
       else ''
         # holder identation
           # Point size
-          size: 13
+          size: 14
+        shell:  # force nushell as default shell on macOS
+          program:  /run/current-system/sw/bin/zsh
+
       ''
     );
 }

@@ -4,6 +4,7 @@
   ./proxychains
   ./tmux
   ./alacritty.nix
+  ./hyprland
   #./nvimdots.nix
   ];
 
@@ -147,21 +148,6 @@
     };
   };
 
-  # alacritty - 一个跨平台终端，带 GPU 加速功能
-  programs.alacritty = {
-    enable = true;
-    # 自定义配置
-    settings = {
-     # env.TERM = "xterm-256color";
-    #  import = [ /home/fll/.config/alacritty/alacritty.yml ];
-      home.file."alacritty/alacritty.yml".source = ./alacritty.yml;
-      font = { size = 14.0; };
-      shell = {
-        program = "${pkgs.tmux}/bin/tmux";
-        args = [ "new-session" "-t" "main" ];
-      };
-    };
-  };
   programs.neovim = {
     enable = true;
     vimAlias = true;
@@ -263,7 +249,7 @@
 		nf = "neofetch";
                 cp = "cp -riv";
                 cat = "bat --paging=never --style=plain";
-                erd = "erd -Hi";
+                erd = "erd -HI";
                 ls = "exa -a --icons";
                 tree = "exa --tree --icons";
                 nd = "nix develop -c $SHELL";

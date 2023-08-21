@@ -6,6 +6,7 @@
     nvimdots.url = "github:ayamir/nvimdots";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    hyprland.url = "github:hyprwm/Hyprland/v0.28.0";
     catppuccin-btop = {
       url = "github:catppuccin/btop";
       flake = false;
