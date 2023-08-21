@@ -6,6 +6,30 @@
     nvimdots.url = "github:ayamir/nvimdots";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    catppuccin-btop = {
+      url = "github:catppuccin/btop";
+      flake = false;
+    };
+    catppuccin-fcitx5 = {
+      url = "github:catppuccin/fcitx5";
+      flake = false;
+    };
+    catppuccin-bat = {
+      url = "github:catppuccin/bat";
+      flake = false;
+    };
+    catppuccin-alacritty = {
+      url = "github:catppuccin/alacritty";
+      flake = false;
+    };
+    catppuccin-starship = {
+      url = "github:catppuccin/starship";
+      flake = false;
+    };
+    catppuccin-hyprland = {
+      url = "github:catppuccin/hyprland";
+      flake = false;
+    };
   };
 
   outputs = inputs@{ nixpkgs, home-manager, nvimdots ,... }: {

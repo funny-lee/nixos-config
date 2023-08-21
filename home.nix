@@ -3,6 +3,7 @@
   imports = [
   ./proxychains
   ./tmux
+  ./alacritty.nix
   #./nvimdots.nix
   ];
 
@@ -61,6 +62,8 @@
     neovide
     tmux
     proxychains
+    thefuck
+    erdtree
     # archives
     zip
     xz
@@ -231,6 +234,7 @@
                 }
                 zle     -N     fzf-history-widget-accept
                 bindkey '^X^R' fzf-history-widget-accept
+		eval "$(zoxide init zsh)"
             '';
 
             # basically aliases for directories:
@@ -255,6 +259,9 @@
                 mkdir = "mkdir -vp";
                 rm = "rm -rifv";
                 mv = "mv -iv";
+		nv = "nvim";
+		erd = "erd -Hi";
+		nf = "neofetch";
                 cp = "cp -riv";
                 cat = "bat --paging=never --style=plain";
                 erd = "erd -Hi";
