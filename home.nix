@@ -260,7 +260,6 @@
                 rm = "rm -rifv";
                 mv = "mv -iv";
 		nv = "nvim";
-		erd = "erd -Hi";
 		nf = "neofetch";
                 cp = "cp -riv";
                 cat = "bat --paging=never --style=plain";
