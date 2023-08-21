@@ -1,11 +1,11 @@
 { pkgs, lib, config, ... }:
 with lib;
 {
-    	home.packages = [
+    home.packages = [
 	    pkgs.zsh
 	];
 
-        programs.zsh = {
+    programs.zsh = {
             enable = true;
 
             # directory to put config files in
