@@ -1,11 +1,7 @@
 { pkgs, lib, config, ... }:
 with lib;
-let cfg = config.modules.zsh;
 in {
-    cfg.enable = true;
-    options.modules.zsh = { enable = mkEnableOption "zsh"; };
 
-    config = mkIf cfg.enable {
     	home.packages = [
 	    pkgs.zsh
 	];
@@ -76,5 +72,5 @@ in {
               theme = "dst";
         };
     };
-};
+
 }
