@@ -3,6 +3,7 @@
   imports = [
   ./proxychains
   ./tmux
+  ./zsh.nix
   #./nvimdots.nix
   ];
 
