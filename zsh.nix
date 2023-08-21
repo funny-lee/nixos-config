@@ -22,15 +22,19 @@ in {
 
             # .zshrc
             initExtra = ''
-                PROMPT="%F{blue}%m %~%b "$'\n'"%(?.%F{green}%Bλ%b |.%F{red}?) %f"
-
                 export PASSWORD_STORE_DIR="$XDG_DATA_HOME/password-store";
                 export ZK_NOTEBOOK_DIR="~/stuff/notes";
-                export DIRENV_LOG_FORMAT="";
                 bindkey '^ ' autosuggest-accept
-
                 edir() { tar -cz $1 | age -p > $1.tar.gz.age && rm -rf $1 &>/dev/null && echo "$1 encrypted" }
                 ddir() { age -d $1 | tar -xz && rm -rf $1 &>/dev/null && echo "$1 decrypted" }
+                export FZF_TMUX_HEIGHT='60%'
+                export fzf_preview_cmd='[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file || (ccat --color=always {} || highlight -O ansi -l {} || cat {}) 2> /dev/null | head -500'
+                fzf-history-widget-accept() {
+                fzf-history-widget
+                zle accept-line
+                }
+                zle     -N     fzf-history-widget-accept
+                bindkey '^X^R' fzf-history-widget-accept
             '';
 
             # basically aliases for directories: 
@@ -61,21 +65,16 @@ in {
                 ls = "exa -a --icons";
                 tree = "exa --tree --icons";
                 nd = "nix develop -c $SHELL";
+                update = "sudo nixos-rebuild switch";
                 rebuild = "doas nixos-rebuild switch --flake $NIXOS_CONFIG_DIR --fast; notify-send 'Rebuild complete\!'";
             };
 
             # Source all plugins, nix-style
-            plugins = [
-            {
-                name = "auto-ls";
-                src = pkgs.fetchFromGitHub {
-                    owner = "notusknot";
-                    repo = "auto-ls";
-                    rev = "62a176120b9deb81a8efec992d8d6ed99c2bd1a1";
-                    sha256 = "08wgs3sj7hy30x03m8j6lxns8r2kpjahb9wr0s0zyzrmr4xwccj0";
-                };
-            }
-        ];
+            oh-my-zsh = {
+              enable = true;
+              plugins = [ "git" "thefuck" "sudo"];
+              theme = "dst";
+        };
     };
 };
 }
