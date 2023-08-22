@@ -5,6 +5,7 @@
   ./tmux
   ./alacritty.nix
   ./joshuto
+  ./hypr
   # ./nvimdots.nix
   ];
 
@@ -245,9 +246,9 @@
                 mkdir = "mkdir -vp";
                 rm = "rm -rifv";
                 mv = "mv -iv";
-		nv = "nvim";
-		nf = "neofetch";
-		jo = "joshuto";
+		        nv = "nvim";
+		        nf = "neofetch";
+		        jo = "joshuto";
                 cp = "cp -riv";
                 cat = "bat --paging=never --style=plain";
                 erd = "erd -HI";
@@ -265,10 +266,11 @@
               theme = "dst";
         };
     };
-  programs.git = {
-    userName  = "funny-lee";
-    userEmail = "1750285541@qq.com";
-  };
+ # programs.git = {
+ #   enable = true;
+ #   userName  = "funny-lee";
+ #   userEmail = "1750285541@qq.com";
+ # };
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
   # when a new Home Manager release introduces backwards
