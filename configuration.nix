@@ -198,7 +198,7 @@
     description = "fll";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
-      firefox
+      # firefox
       kate
       wget
       clash

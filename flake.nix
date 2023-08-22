@@ -4,7 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    nvimdots.url = "github:ayamir/nvimdots";
+    nvimdots.url = "github:misumisumi/nvimdots";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     # modern window compositor
@@ -16,6 +16,14 @@
       url = "github:Kirottu/anyrun";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nur-ryan4yin = {
+      url = "github:ryan4yin/nur-packages";
+      # inputs.nixpkgs.follows = "nixpkgs";
+    };
+    wallpapers = {
+      url = "github:ryan4yin/wallpapers";
+      flake = false;
+    };
 
     # generate iso/qcow2/docker/... image from nixos configuration
     nixos-generators = {
@@ -23,6 +31,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    catppuccin-cava = {
+      url = "github:catppuccin/cava";
+      flake = false;
+    };
 
     catppuccin-btop = {
       url = "github:catppuccin/btop";
@@ -57,7 +69,7 @@
         system = "x86_64-linux";
         modules = [
           ./configuration.nix
-          ./hyptland.nix
+          ./hyprland.nix
           # 将 home-manager 配置为 nixos 的一个 module
           # 这样在 nixos-rebuild switch 时，home-manager 配置也会被自动部署
           home-manager.nixosModules.home-manager

@@ -50,8 +50,7 @@
         "x-scheme-handler/https" = browser;
         "x-scheme-handler/unknown" = browser;
 
-        "x-scheme-handler/discord" = ["discord.desktop"];
-        "x-scheme-handler/tg" = ["telegramdesktop.desktop"];
+
 
         "audio/*" = ["mpv.desktop"];
         "video/*" = ["mpv.dekstop"];

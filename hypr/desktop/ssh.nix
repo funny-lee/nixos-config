@@ -18,14 +18,14 @@
         # It has the same effect as adding cli option `ssh -A user@host`
         ForwardAgent yes
         # romantic holds my homelab~
-        IdentityFile ~/.ssh/romantic
+        IdentityFile ~/.ssh/fll
         # Specifies that ssh should only use the identity file explicitly configured above
         # required to prevent sending default identity files first.
         IdentitiesOnly yes
 
       Host github.com
           # github is controlled by gluttony~
-          IdentityFile ~/.ssh/gluttony
+          IdentityFile ~/.ssh/fll
           # Specifies that ssh should only use the identity file explicitly configured above
           # required to prevent sending default identity files first.
           IdentitiesOnly yes

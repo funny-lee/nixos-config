@@ -35,9 +35,9 @@
       displayManager = {
         defaultSession = "hyprland";
         lightdm.enable = false;
-        gdm = {
+        sddm = {
           enable = true;
-          wayland = true;
+          # wayland = true;
         };
       };
     };
@@ -47,12 +47,12 @@
     hyprland = {
       enable = true;
     
-      xwayland = {
-        enable = true;
-        hidpi = true;
-      };
+      #xwayland = {
+      #  enable = true;
+      #  hidpi = true;
+      #};
     
-      nvidiaPatches = true;
+      enableNvidiaPatches = true;
     };
 
     # monitor backlight control
