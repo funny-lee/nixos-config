@@ -4,9 +4,12 @@
   ./proxychains
   ./tmux
   ./alacritty.nix
-  ./hyprland
   ./joshuto
-  ./desktop-hyprland.nix
+  ./hyprland.nix
+  ./hyprland
+  ./base
+  ./desktop
+  ./base-desktop
   # ./nvimdots.nix
   ];
 
