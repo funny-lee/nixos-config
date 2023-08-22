@@ -59,8 +59,8 @@
     neofetch
     joshuto # terminal file manager
     zoxide
-   # neovim
-    nixpkgs-unstable.neovide
+   # neovim nixpkgs-unstable.
+    neovide
     tmux
     proxychains
     thefuck
@@ -265,6 +265,10 @@
               theme = "dst";
         };
     };
+  programs.git = {
+    userName  = "funny-lee";
+    userEmail = "1750285541@qq.com";
+  };
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
   # when a new Home Manager release introduces backwards
