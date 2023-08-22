@@ -6,7 +6,23 @@
     nvimdots.url = "github:ayamir/nvimdots";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    # modern window compositor
     hyprland.url = "github:hyprwm/Hyprland/v0.28.0";
+    # community wayland nixpkgs
+    nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
+    # anyrun - a wayland launcher
+    anyrun = {
+      url = "github:Kirottu/anyrun";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # generate iso/qcow2/docker/... image from nixos configuration
+    nixos-generators = {
+      url = "github:nix-community/nixos-generators";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+
     catppuccin-btop = {
       url = "github:catppuccin/btop";
       flake = false;
