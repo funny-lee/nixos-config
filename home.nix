@@ -1,15 +1,10 @@
-{ config, pkgs, lib , stdenv , inputs ,nvimdots ,... }:
+{ config, pkgs, nixpkgs-unstable, lib , stdenv , inputs ,nvimdots ,... }:
 {
   imports = [
   ./proxychains
   ./tmux
   ./alacritty.nix
   ./joshuto
-  ./hyprland.nix
-  ./hyprland
-  ./base
-  ./desktop
-  ./base-desktop
   # ./nvimdots.nix
   ];
 
@@ -65,7 +60,7 @@
     joshuto # terminal file manager
     zoxide
    # neovim
-    neovide
+    nixpkgs-unstable.neovide
     tmux
     proxychains
     thefuck
@@ -252,6 +247,7 @@
                 mv = "mv -iv";
 		nv = "nvim";
 		nf = "neofetch";
+		jo = "joshuto";
                 cp = "cp -riv";
                 cat = "bat --paging=never --style=plain";
                 erd = "erd -HI";
