@@ -7,6 +7,7 @@
   ./joshuto
   ./hypr
   # ./nvimdots.nix
+  inputs.nvimdots.nixosModules.nvimdots
   ];
 
   # 注意修改这里的用户名与用户目录
@@ -40,10 +41,10 @@
   # '';
 
   # 设置鼠标指针大小以及字体 DPI（适用于 4K 显示器）
-  xresources.properties = {
-    "Xcursor.size" = 14;
-    "Xft.dpi" = 112;
-  };
+ # xresources.properties = {
+ #   "Xcursor.size" = 14;
+ #   "Xft.dpi" = 112;
+ # };
 
   # git 相关配置
   programs.git = {
@@ -134,7 +135,7 @@
     usbutils # lsusb
 
     texlab
-    mpv
+
   ];
 
   # 启用 starship，这是一个漂亮的 shell 提示符
@@ -204,7 +205,7 @@
 
             enableCompletion = true;
             enableAutosuggestions = true;
-            enableSyntaxHighlighting = true;
+            syntaxHighlighting.enable = true;
 
             # .zshrc
             initExtra = ''
