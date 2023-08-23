@@ -6,8 +6,7 @@
   ./alacritty.nix
   ./joshuto
   ./hypr
-  # ./nvimdots.nix
-  inputs.nvimdots.nixosModules.nvimdots
+  ./nvimdots.nix
   ];
 
   # 注意修改这里的用户名与用户目录
