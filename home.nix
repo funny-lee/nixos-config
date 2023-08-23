@@ -1,4 +1,4 @@
-{ config, pkgs, nixpkgs-unstable, lib , stdenv , inputs ,nvimdots ,... }:
+{ config, pkgs, pkgs-unstable, lib , stdenv , inputs ,nvimdots ,... }:
 {
   imports = [
   ./proxychains
@@ -6,7 +6,8 @@
   ./alacritty.nix
   ./joshuto
   ./hypr
-  ./nvimdots.nix
+  # ./nvimdots.nix
+  ./development.nix
   ];
 
   # 注意修改这里的用户名与用户目录
@@ -63,8 +64,10 @@
    # neovim nixpkgs-unstable.
     neovide
     tmux
+    tldr
     proxychains
     thefuck
+    yesplaymusic
     erdtree
     # archives
     zip
