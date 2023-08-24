@@ -20,11 +20,7 @@
       url = "github:ryan4yin/nur-packages";
       # inputs.nixpkgs.follows = "nixpkgs";
     };
-    astronvim = {
-      url = "github:AstroNvim/AstroNvim/v3.36.0";
-      flake = false;
-    };
-
+    
     wallpapers = {
       url = "github:ryan4yin/wallpapers";
       flake = false;

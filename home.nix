@@ -6,7 +6,7 @@
   ./alacritty.nix
   ./joshuto
   ./hypr
-  ./neovim
+  ./nvimdots.nix
   ./development.nix
   ];
 
