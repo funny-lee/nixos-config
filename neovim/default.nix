@@ -29,7 +29,7 @@
       enable = true;
       defaultEditor = true;
 
-      viAlias = false;
+      viAlias = true;
       vimAlias = true;
 
       withPython3 = true;
@@ -57,8 +57,8 @@
 
       #-- python
       nodePackages.pyright # python language server
-      python311Packages.black # python formatter
-      python311Packages.ruff-lsp
+      black # python formatter
+      ruff-lsp
 
       #-- rust
       rust-analyzer
