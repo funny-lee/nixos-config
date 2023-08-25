@@ -1,4 +1,4 @@
-{ config, pkgs, pkgs-unstable, lib , stdenv , inputs ,nvimdots ,... }:
+{ config, pkgs, pkgs-unstable, lib , stdenv , inputs ,... }:
 {
   imports = [
   ./proxychains
@@ -6,7 +6,8 @@
   ./alacritty.nix
   ./joshuto
   ./hypr
-  ./nvimdots.nix
+  # ./nvimdots.nix
+  ./neovim
   ./development.nix
   ];
 
@@ -152,13 +153,13 @@
     };
   };
 
-  programs.neovim = {
-    enable = true;
-    vimAlias = true;
-    vimdiffAlias = true;
-    defaultEditor = true;
+  #programs.neovim = {
+  #  enable = true;
+  #  vimAlias = true;
+  #  vimdiffAlias = true;
+  #  defaultEditor = true;
 
-  };
+  #};
   programs.bash = {
     enable = true;
     enableCompletion = true;

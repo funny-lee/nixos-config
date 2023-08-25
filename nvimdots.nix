@@ -1,4 +1,4 @@
-{lib,pkgs,nvimdots ,...}:
+{lib,pkgs,config,...}:
 {
   programs.neovim.nvimdots = {
     enable = true;
