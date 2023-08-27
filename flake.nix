@@ -17,6 +17,7 @@
       url = "github:Kirottu/anyrun";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     astronvim = {
       url = "github:AstroNvim/AstroNvim/v3.36.0";
       flake = false;
@@ -69,7 +70,7 @@
     };
   };
 
-  outputs = inputs@{ nixpkgs, home-manager, nvimdots , nixpkgs-unstable, ... }: {
+  outputs = inputs@{ nixpkgs, home-manager, nixpkgs-unstable, ... }: {
     nixosConfigurations = {
       # 这里的 nixos-test 替换成你的主机名称
       nixos = nixpkgs.lib.nixosSystem {

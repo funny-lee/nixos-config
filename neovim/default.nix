@@ -79,6 +79,7 @@
       #-- golang
       go
       gomodifytags
+      gdu
       iferr # generate error handling code for go
       impl # generate function implementation for go
       gotools # contains tools like: godoc, goimports, etc.
@@ -107,7 +108,7 @@
       terraform-ls
       jsonnet
       jsonnet-language-server
-      hadolint # Dockerfile linter
+      # hadolint # Dockerfile linter
 
       #-- Others
       taplo # TOML language server / formatter / validator

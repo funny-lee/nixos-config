@@ -70,6 +70,7 @@
     thefuck
     yesplaymusic
     erdtree
+    lazygit
     # archives
     zip
     xz
@@ -83,6 +84,8 @@
     exa # A modern replacement for ‘ls’
      # A command-line fuzzy finder
     fd
+    torrential
+    bottom
     # networking tools
     mtr # A network diagnostic tool
     iperf3
@@ -111,6 +114,9 @@
     flamegraph
     universal-ctags
     graphviz
+
+    #  nodejs
+    nodejs_20
     # nix related
     #
     # it provides the command `nom` works just like `nix`
@@ -137,7 +143,6 @@
     pciutils # lspci
     usbutils # lsusb
 
-    texlab
 
   ];
 
