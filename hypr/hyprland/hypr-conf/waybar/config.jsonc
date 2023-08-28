@@ -5,6 +5,7 @@
   "modules-left": [
     "custom/launcher",
     "temperature",
+    "battery",
     "wlr/workspaces"
   ],
   "modules-center": [
@@ -39,7 +40,17 @@
       "default": ""
     }
   },
-
+"battery": {
+    "bat": "BAT0",
+    "interval": 60,
+    "states": {
+        "warning": 20,
+        "critical": 10
+    },
+    "format": "{capacity}% {icon}",
+    "format-icons": ["", "", "", "", ""],
+    "max-length": 25
+},
   "clock": {
     "interval": 60,
     "align": 0,

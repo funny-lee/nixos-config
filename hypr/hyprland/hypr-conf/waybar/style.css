@@ -100,6 +100,8 @@ tooltip label {
 /* #idle_inhibitor {
                  color: rgb(221, 182, 242);
                }*/
+
+#battery,
 #custom-wall {
   color: #33ccff;
 }

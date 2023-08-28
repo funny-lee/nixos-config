@@ -41,9 +41,11 @@ return {
     ---- Backend
     { import = "astrocommunity.pack.lua" },
     { import = "astrocommunity.pack.go" },
+    { import = "astrocommunity.pack.kotlin" },
     { import = "astrocommunity.pack.rust" },
     { import = "astrocommunity.pack.python" },
     { import = "astrocommunity.pack.java" },
+    { import = "astrocommunity.pack.haskell" },
     -- { import = "astrocommunity.pack.nix" },  -- manually add config for nix, comment this one.
     { import = "astrocommunity.pack.proto" },
     ---- Operation & Cloud Native
@@ -52,6 +54,9 @@ return {
     { import = "astrocommunity.pack.cmake" },
     { import = "astrocommunity.pack.cpp" },
     { import = "astrocommunity.pack.docker" },
+    { import = "astrocommunity.pack.quarto" },
+    { import = "astrocommunity.markdown-and-latex.peek-nvim" },
+    { import = "astrocommunity.markdown-and-latex.vimtex" },
     -- Motion
     { import = "astrocommunity.motion.mini-surround" },
     -- https://github.com/echasnovski/mini.ai
@@ -123,7 +128,6 @@ return {
         { "=P", "<Plug>(YankyPutBeforeFilter)", desc = "Put before applying a filter" },
       },
     },
-    
     -- Enhanced matchparen.vim plugin for Neovim to highlight the outer pair.
     {
       "utilyre/sentiment.nvim",

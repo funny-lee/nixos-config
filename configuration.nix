@@ -1,14 +1,15 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ config, pkgs, ... }:
-
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  config,
+  pkgs,
+  ...
+}: {
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -17,48 +18,42 @@
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.extraHosts = ''
-  # GitHub Host Start
-  185.199.111.154              github.githubassets.com
-  140.82.114.21                central.github.com
-  185.199.110.133              desktop.githubusercontent.com
-  185.199.110.153              assets-cdn.github.com
-  185.199.110.133              camo.githubusercontent.com
-  185.199.108.133              github.map.fastly.net
-  151.101.129.194              github.global.ssl.fastly.net
-  140.82.113.4                 gist.github.com
-  185.199.111.153              github.io
-  140.82.113.3                 github.com
-  140.82.114.5                 api.github.com
-  185.199.111.133              raw.githubusercontent.com
-  185.199.110.133              user-images.githubusercontent.com
-  185.199.109.133              favicons.githubusercontent.com
-  185.199.110.133              avatars5.githubusercontent.com
-  185.199.111.133              avatars4.githubusercontent.com
-  185.199.108.133              avatars3.githubusercontent.com
-  185.199.110.133              avatars2.githubusercontent.com
-  185.199.111.133              avatars1.githubusercontent.com
-  185.199.108.133              avatars0.githubusercontent.com
-  185.199.111.133              avatars.githubusercontent.com
-  140.82.112.10                codeload.github.com
-  52.217.233.209               github-cloud.s3.amazonaws.com
-  52.217.75.132                github-com.s3.amazonaws.com
-  52.217.134.161               github-production-release-asset-2e65be.s3.amazonaws.com
-  52.217.66.156                github-production-user-asset-6210df.s3.amazonaws.com
-  52.217.235.49                github-production-repository-file-5c1aeb.s3.amazonaws.com
-  185.199.109.153              githubstatus.com
-  140.82.112.18                github.community
-  185.199.108.133              media.githubusercontent.com
-  185.199.108.133              objects.githubusercontent.com
-  185.199.109.133              raw.github.com
-  20.221.80.166                copilot-proxy.githubusercontent.com
-  
-  # Please Star : https://github.com/ineo6/hosts
-  # Mirror Repo : https://gitlab.com/ineo6/hosts
-  
-  # Update at: 2023-08-06 16:11:33
-  
-  # GitHub Host End
-'';
+        # Please Star : https://github.com/ineo6/hosts
+        # GitHub Host End
+    185.199.110.154              github.githubassets.com
+    140.82.112.21                central.github.com
+    185.199.111.133              desktop.githubusercontent.com
+    185.199.109.153              assets-cdn.github.com
+    185.199.108.133              camo.githubusercontent.com
+    185.199.111.133              github.map.fastly.net
+    151.101.1.194                github.global.ssl.fastly.net
+    140.82.112.4                 gist.github.com
+    185.199.111.153              github.io
+    140.82.112.4                 github.com
+    140.82.112.5                 api.github.com
+    185.199.108.133              raw.githubusercontent.com
+    185.199.109.133              user-images.githubusercontent.com
+    185.199.109.133              favicons.githubusercontent.com
+    185.199.108.133              avatars5.githubusercontent.com
+    185.199.111.133              avatars4.githubusercontent.com
+    185.199.109.133              avatars3.githubusercontent.com
+    185.199.110.133              avatars2.githubusercontent.com
+    185.199.110.133              avatars1.githubusercontent.com
+    185.199.111.133              avatars0.githubusercontent.com
+    185.199.108.133              avatars.githubusercontent.com
+    140.82.112.9                 codeload.github.com
+    52.217.74.225                github-cloud.s3.amazonaws.com
+    54.231.163.153               github-com.s3.amazonaws.com
+    52.217.70.116                github-production-release-asset-2e65be.s3.amazonaws.com
+    16.182.71.177                github-production-user-asset-6210df.s3.amazonaws.com
+    52.217.136.193               github-production-repository-file-5c1aeb.s3.amazonaws.com
+    185.199.111.153              githubstatus.com
+    140.82.114.17                github.community
+    185.199.110.133              media.githubusercontent.com
+    185.199.109.133              objects.githubusercontent.com
+    185.199.110.133              raw.github.com
+    20.221.80.166                copilot-proxy.githubusercontent.com
+  '';
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
@@ -83,62 +78,65 @@
     LC_TELEPHONE = "zh_CN.UTF-8";
     LC_TIME = "zh_CN.UTF-8";
   };
-   fonts = {
+  fonts = {
     fontDir.enable = true;
-    fonts = with pkgs; [
+    packages = with pkgs; [
       noto-fonts
       # noto-fonts-cjk-sans
       # noto-fonts-cjk-serif
       source-han-sans
       source-han-serif
-      sarasa-gothic  #更纱黑体
+      sarasa-gothic #更纱黑体
       source-code-pro
       hack-font
       jetbrains-mono
-      (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+      fira-code
+      intel-one-mono
+      mononoki
+      (nerdfonts.override {fonts = ["JetBrainsMono" "FiraCode"];})
     ];
   };
 
-   # 简单配置一下 fontconfig 字体顺序，以免 fallback 到不想要的字体
-    fonts.fontconfig = {
-      defaultFonts = {
-        emoji = [ "Noto Color Emoji" ];
-        monospace = [
-          "Noto Sans Mono CJK SC"
-          "Sarasa Mono SC"
-          "DejaVu Sans Mono"
-        ];
-        sansSerif = [
-          "Noto Sans CJK SC"
-          "Source Han Sans SC"
-          "DejaVu Sans"
-        ];
-        serif = [
-          "Noto Serif CJK SC"
-          "Source Han Serif SC"
-          "DejaVu Serif"
-        ];
-      };
+  # 简单配置一下 fontconfig 字体顺序，以免 fallback 到不想要的字体
+  fonts.fontconfig = {
+    defaultFonts = {
+      emoji = ["Noto Color Emoji"];
+      monospace = [
+        "Noto Sans Mono CJK SC"
+        "Sarasa Mono SC"
+        "DejaVu Sans Mono"
+      ];
+      sansSerif = [
+        "Noto Sans CJK SC"
+        "Source Han Sans SC"
+        "DejaVu Sans"
+      ];
+      serif = [
+        "Noto Serif CJK SC"
+        "Source Han Serif SC"
+        "DejaVu Serif"
+      ];
     };
+  };
 
   i18n.inputMethod = {
-     enabled = "fcitx5";
-     fcitx5.addons = with pkgs; [
-       fcitx5-rime
-       fcitx5-chinese-addons
-     ];
+    enabled = "fcitx5";
+    fcitx5.addons = with pkgs; [
+      fcitx5-rime
+      fcitx5-chinese-addons
+    ];
 
     # 我现在用 ibus
-  #  enabled = "ibus";
-  #  ibus.engines = with pkgs.ibus-engines; [
-  #    libpinyin
-  #    rime
-  #  ];
+    #  enabled = "ibus";
+    #  ibus.engines = with pkgs.ibus-engines; [
+    #    libpinyin
+    #    rime
+    #  ];
   };
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-  nix.settings.substituters = [ "https://mirrors.ustc.edu.cn/nix-channels/store" ];
+  nix.settings.substituters = ["https://mirrors.ustc.edu.cn/nix-channels/store"];
   boot.loader.systemd-boot.configurationLimit = 7;
   # boot.loader.grub.configurationLimit = 10;
 
@@ -164,8 +162,8 @@
     xkbVariant = "";
   };
   services.xserver.windowManager.xmonad = {
-   enable = true;
-   enableContribAndExtras = true;
+    enable = true;
+    enableContribAndExtras = true;
   };
 
   # Enable CUPS to print documents.
@@ -190,13 +188,13 @@
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = ["nix-command" "flakes"];
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.fll = {
     isNormalUser = true;
     shell = pkgs.zsh;
     description = "fll";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = ["networkmanager" "wheel"];
     packages = with pkgs; [
       # firefox
       kate
@@ -204,18 +202,18 @@
       clash
       alacritty
       zsh
-    #  thunderbird
+      #  thunderbird
     ];
   };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-  boot.supportedFilesystems = [ "ntfs" ];
+  boot.supportedFilesystems = ["ntfs"];
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
+    #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    #  wget
   ];
   # compile
   programs.zsh.enable = true;
@@ -238,23 +236,23 @@
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
- # systemd.services.nix-daemon.environment = {
- #    http_proxy = "http://127.0.0.1:7890";
- #    https_proxy = "http://127.0.0.1:7890";
- #  };
-   # Set environment variables
-   environment.variables = {
-        XDG_DATA_HOME = "$HOME/.local/share";
-        PASSWORD_STORE_DIR = "$HOME/.local/share/password-store";
-       # GTK_RC_FILES = "$HOME/.local/share/gtk-1.0/gtkrc";
-       # GTK2_RC_FILES = "$HOME/.local/share/gtk-2.0/gtkrc";
-        MOZ_ENABLE_WAYLAND = "1";
-       # ZK_NOTEBOOK_DIR = "$HOME/stuff/notes/";
-        EDITOR = "nvim";
-       # DIRENV_LOG_FORMAT = "";
-       # ANKI_WAYLAND = "1";
-       # DISABLE_QT5_COMPAT = "0";
-    };
+  # systemd.services.nix-daemon.environment = {
+  #    http_proxy = "http://127.0.0.1:7890";
+  #    https_proxy = "http://127.0.0.1:7890";
+  #  };
+  # Set environment variables
+  environment.variables = {
+    XDG_DATA_HOME = "$HOME/.local/share";
+    PASSWORD_STORE_DIR = "$HOME/.local/share/password-store";
+    # GTK_RC_FILES = "$HOME/.local/share/gtk-1.0/gtkrc";
+    # GTK2_RC_FILES = "$HOME/.local/share/gtk-2.0/gtkrc";
+    MOZ_ENABLE_WAYLAND = "1";
+    # ZK_NOTEBOOK_DIR = "$HOME/stuff/notes/";
+    EDITOR = "nvim";
+    # DIRENV_LOG_FORMAT = "";
+    # ANKI_WAYLAND = "1";
+    # DISABLE_QT5_COMPAT = "0";
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
@@ -263,5 +261,5 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.05"; # Did you read the comment?
-  nix.settings.trusted-users = [ "fll" ];
+  nix.settings.trusted-users = ["fll"];
 }
