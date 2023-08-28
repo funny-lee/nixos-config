@@ -70,6 +70,7 @@
     onefetch
     joshuto # terminal file manager
     zoxide
+    exiftool
     # neovim nixpkgs-unstable.
     neovide
     tmux
@@ -94,6 +95,7 @@
     fd
     torrential
     bottom
+    emacs
     # networking tools
     mtr # A network diagnostic tool
     iperf3
