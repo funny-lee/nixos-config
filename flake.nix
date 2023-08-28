@@ -29,7 +29,7 @@
     };
     
     wallpapers = {
-      url = "github:ryan4yin/wallpapers";
+      url = "github:funny-lee/mywallpapers";
       flake = false;
     };
 

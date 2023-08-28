@@ -21,6 +21,10 @@
     source = ./mpd;
     recursive = true;
   };
+  home.file.".config/zathura" = {
+    source = ./zathura;
+    recursive = true;
+  };
 
   # allow fontconfig to discover fonts and configurations installed through home.packages
   fonts.fontconfig.enable = true;
