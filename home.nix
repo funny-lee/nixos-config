@@ -14,7 +14,6 @@
     ./joshuto
     ./hypr
     ./doom
-    ./julia.nix
     # ./nvimdots.nix
     ./neofetch
     ./neovim
@@ -134,14 +133,7 @@
     nodejs_20
     deno
     # R
-    R
-    rstudio
-    radianWrapper
-    rPackages.tidyverse
-    rPackages.knitr
-    rPackages.palmerpenguins
-    rPackages.gt
-    rPackages.ggthemes
+        racket
     # it provides the command `nom` works just like `nix`
     # with more details log output
     nix-output-monitor
