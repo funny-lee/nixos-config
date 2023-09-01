@@ -14,6 +14,7 @@
     ./joshuto
     ./hypr
     ./doom
+    ./julia.nix
     # ./nvimdots.nix
     ./neofetch
     ./neovim
@@ -78,6 +79,7 @@
     tldr
     proxychains
     thefuck
+    zellij
     yesplaymusic
     erdtree
     lazygit
@@ -131,8 +133,15 @@
     #  nodejs
     nodejs_20
     deno
-    # nix related
-    #
+    # R
+    R
+    rstudio
+    radianWrapper
+    rPackages.tidyverse
+    rPackages.knitr
+    rPackages.palmerpenguins
+    rPackages.gt
+    rPackages.ggthemes
     # it provides the command `nom` works just like `nix`
     # with more details log output
     nix-output-monitor
@@ -140,7 +149,7 @@
     # productivity
     hugo # static site generator
     glow # markdown previewer in terminal
-
+    quarto
     btop # replacement of htop/nmon
     iotop # io monitoring
     iftop # network monitoring
@@ -193,7 +202,7 @@
       nf = "neofetch";
       k = "kubectl";
       exa = "exa -all";
-      urldecode = "python3 -c 'import sys, urllib.parse as ul; print(ul.unquote_plus(sys.stdin.read()))'";
+      urldecode = "python3 -c 'import sys, urllib.parse as ul; print(ul.untuote_plus(sys.stdin.read()))'";
       urlencode = "python3 -c 'import sys, urllib.parse as ul; print(ul.quote_plus(sys.stdin.read()))'";
       jo = "joshuto";
     };

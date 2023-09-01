@@ -592,15 +592,16 @@
     "wallpapers": {
       "flake": false,
       "locked": {
-        "lastModified": 1693207529,
-        "narHash": "sha256-rRMpg5qfcLFIBskhiUZYgC8Mt3Z1isjml8+4AGeVO3M=",
+        "lastModified": 1693213527,
+        "narHash": "sha256-tsxGTCHBDdG3xfF03ozurxzHghz7yKuDKUprY3Z6cVk=",
         "owner": "funny-lee",
         "repo": "mywallpapers",
-        "rev": "2b1a8a8f81194c61abb048f4a66efca4d23626fe",
+        "rev": "a37b01823773edbb70f11d74f2976f297a42085d",
         "type": "github"
       },
       "original": {
         "owner": "funny-lee",
+        "ref": "main",
         "repo": "mywallpapers",
         "type": "github"
       }
