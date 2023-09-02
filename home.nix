@@ -13,7 +13,6 @@
     ./alacritty.nix
     ./joshuto
     ./hypr
-    ./doom-emacs
     # ./nvimdots.nix
     # inputs.nvimdots.nixosModules.nvimdots
     ./neofetch
