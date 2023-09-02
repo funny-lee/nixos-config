@@ -5,6 +5,7 @@
   lib,
   stdenv,
   inputs,
+  nix-doom-emacs,
   ...
 }: {
   imports = [
@@ -15,6 +16,7 @@
     ./hypr
     # ./nvimdots.nix
     # inputs.nvimdots.nixosModules.nvimdots
+     nix-doom-emacs.hmModule 
     ./neofetch
     ./development.nix
   ];
@@ -60,6 +62,11 @@
     userName = "funny-lee";
     userEmail = "1750285541@qq.com";
   };
+   programs.doom-emacs = {
+              enable = true;
+              doomPrivateDir = ./doom.d; # Directory containing your config.el, init.el
+                                         # and packages.el files
+            };
 
   # 通过 home.packages 安装一些常用的软件
   # 这些软件将仅在当前用户下可用，不会影响系统级别的配置
