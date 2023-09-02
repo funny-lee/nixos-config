@@ -17,11 +17,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    astronvim = {
-      url = "github:AstroNvim/AstroNvim/v3.36.0";
-      flake = false;
-    };
-
+    # astronvim = {
+    #   url = "github:AstroNvim/AstroNvim/v3.36.0";
+    #   flake = false;
+    # };
+    #
     nur-ryan4yin = {
       url = "github:ryan4yin/nur-packages";
       # inputs.nixpkgs.follows = "nixpkgs";
@@ -97,7 +97,6 @@
             # 取消注释下面这一行，就可以在 home.nix 中使用 flake 的所有 inputs 参数了
             home-manager.extraSpecialArgs = inputs;
           }
-          (args: {nixpkgs.overlays = import ./overlays args;})
         ];
       };
     };
