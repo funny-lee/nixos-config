@@ -13,10 +13,8 @@
     ./alacritty.nix
     ./joshuto
     ./hypr
-    ./doom
     ./nvimdots.nix
     ./neofetch
-    ./neovim
     ./development.nix
   ];
 
