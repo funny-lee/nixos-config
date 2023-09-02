@@ -13,7 +13,9 @@
     ./alacritty.nix
     ./joshuto
     ./hypr
-    ./nvimdots.nix
+    ./doom-emacs
+    # ./nvimdots.nix
+    # inputs.nvimdots.nixosModules.nvimdots
     ./neofetch
     ./development.nix
   ];
@@ -267,6 +269,7 @@
       mkdir = "mkdir -vp";
       rm = "rm -rifv";
       mv = "mv -iv";
+      nvd = "neovide";
       nv = "nvim";
       nf = "neofetch";
       jo = "joshuto";
