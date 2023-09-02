@@ -497,19 +497,6 @@
         "type": "github"
       }
     },
-    "nixpkgs_6": {
-      "locked": {
-        "lastModified": 1689192006,
-        "narHash": "sha256-QM0f0d8oPphOTYJebsHioR9+FzJcy1QNIzREyubB91U=",
-        "path": "/nix/store/3j9garb3574mxikwbi6zn594j8mjd19s-source",
-        "rev": "2de8efefb6ce7f5e4e75bdf57376a96555986841",
-        "type": "path"
-      },
-      "original": {
-        "id": "nixpkgs",
-        "type": "indirect"
-      }
-    },
     "nixpkgs_sirula": {
       "locked": {
         "lastModified": 1682879489,
@@ -562,26 +549,7 @@
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nixpkgs-wayland": "nixpkgs-wayland",
         "nur-ryan4yin": "nur-ryan4yin",
-        "scientific-fhs": "scientific-fhs",
         "wallpapers": "wallpapers"
-      }
-    },
-    "scientific-fhs": {
-      "inputs": {
-        "nixpkgs": "nixpkgs_6"
-      },
-      "locked": {
-        "lastModified": 1693531060,
-        "narHash": "sha256-NU8qk9A3tDyU3w069aaIMbHFepV0YInMskWrUzN8MT8=",
-        "owner": "olynch",
-        "repo": "scientific-fhs",
-        "rev": "a33f87b0a106a75575b483ed77a2e40fe3d26fcc",
-        "type": "github"
-      },
-      "original": {
-        "owner": "olynch",
-        "repo": "scientific-fhs",
-        "type": "github"
       }
     },
     "systems": {

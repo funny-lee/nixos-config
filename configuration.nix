@@ -133,7 +133,7 @@
     #    rime
     #  ];
   };
-
+  services.emacs.package = pkgs.emacs-unstable;
   # Enable the X11 windowing system.
   services.xserver.enable = true;
   nix.settings.substituters = ["https://mirrors.ustc.edu.cn/nix-channels/store"];

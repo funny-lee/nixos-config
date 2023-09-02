@@ -26,7 +26,7 @@
       url = "github:ryan4yin/nur-packages";
       # inputs.nixpkgs.follows = "nixpkgs";
     };
-    
+
     wallpapers = {
       url = "github:funny-lee/mywallpapers/main";
       flake = false;
@@ -69,7 +69,12 @@
     };
   };
 
-  outputs = inputs@{ nixpkgs, home-manager, nixpkgs-unstable, ... }: {
+  outputs = inputs @ {
+    nixpkgs,
+    home-manager,
+    nixpkgs-unstable,
+    ...
+  }: {
     nixosConfigurations = {
       # 这里的 nixos-test 替换成你的主机名称
       nixos = nixpkgs.lib.nixosSystem {
@@ -91,13 +96,13 @@
             # 使用 home-manager.extraSpecialArgs 自定义传递给 ./home.nix 的参数
             # 取消注释下面这一行，就可以在 home.nix 中使用 flake 的所有 inputs 参数了
             home-manager.extraSpecialArgs = inputs;
-	  }
+          }
+          (args: {nixpkgs.overlays = import ./overlays args;})
         ];
       };
     };
   };
   nixConfig = {
-
     substituters = [
       # my own cache server
       # "https://ryan4yin.cachix.org"
@@ -114,7 +119,7 @@
       "https://nixpkgs-wayland.cachix.org"
     ];
     extra-trusted-public-keys = [
-     # "ryan4yin.cachix.org-1:Gbk27ZU5AYpGS9i3ssoLlwdvMIh0NxG0w8it/cv9kbU="
+      # "ryan4yin.cachix.org-1:Gbk27ZU5AYpGS9i3ssoLlwdvMIh0NxG0w8it/cv9kbU="
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       "nixpkgs-wayland.cachix.org-1:3lwxaILxMRkVhehr5StQprHdEo4IrE8sRho9R9HOLYA="

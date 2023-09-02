@@ -97,7 +97,6 @@
     fd
     torrential
     bottom
-    emacs
     # networking tools
     mtr # A network diagnostic tool
     iperf3
@@ -133,7 +132,8 @@
     nodejs_20
     deno
     # R
-        racket
+    racket
+    chez
     # it provides the command `nom` works just like `nix`
     # with more details log output
     nix-output-monitor
