@@ -14,7 +14,7 @@
     ./joshuto
     ./hypr
     ./doom
-    # ./nvimdots.nix
+    ./nvimdots.nix
     ./neofetch
     ./neovim
     ./development.nix
