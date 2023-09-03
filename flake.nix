@@ -13,6 +13,8 @@
     hyprland.url = "github:hyprwm/Hyprland/v0.28.0";
     # community wayland nixpkgs
     nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
+
+    xremap-flake.url = "github:xremap/nix-flake";
     # anyrun - a wayland launcher
     anyrun = {
       url = "github:Kirottu/anyrun";
@@ -76,12 +78,14 @@
     nixpkgs,
     home-manager,
     nix-doom-emacs,
+    nvimdots,
 ...
   }: {
     nixosConfigurations = {
       # 这里的 nixos-test 替换成你的主机名称
       nixos = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
+        # specialArgs = {inherit inputs;};
         modules = [
           ./configuration.nix
           ./hyprland.nix
@@ -98,7 +102,7 @@
 
             # 使用 home-manager.extraSpecialArgs 自定义传递给 ./home.nix 的参数
             # 取消注释下面这一行，就可以在 home.nix 中使用 flake 的所有 inputs 参数了
-            home-manager.extraSpecialArgs = inputs;
+            home-manager.extraSpecialArgs =  inputs;
           }
         ];
       };

@@ -10,7 +10,7 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
   ];
-
+  environment.pathsToLink = [ "/share/zsh" ];
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -146,7 +146,9 @@
     dates = "weekly";
     options = "--delete-older-than 1w";
   };
-
+  hardware.uinput.enable = true;
+  users.groups.input.members = [ "fll" ];
+  users.groups.uinput.members = [ "fll" ];
   # Optimise storage
   # you can alse optimise the store manually via:
   #    nix-store --optimise

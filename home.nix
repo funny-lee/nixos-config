@@ -5,7 +5,9 @@
   lib,
   stdenv,
   inputs,
+  nvimdots,
   nix-doom-emacs,
+  xremap-flake,
   ...
 }: {
   imports = [
@@ -14,9 +16,11 @@
     ./alacritty.nix
     ./joshuto
     ./hypr
+    ./coq.nix
     # ./nvimdots.nix
-    # inputs.nvimdots.nixosModules.nvimdots
-     nix-doom-emacs.hmModule 
+    nvimdots.nixosModules.nvimdots
+    nix-doom-emacs.hmModule
+    xremap-flake.homeManagerModules.default
     ./neofetch
     ./development.nix
   ];
@@ -24,16 +28,14 @@
   # 注意修改这里的用户名与用户目录
   home.username = "fll";
   home.homeDirectory = "/home/fll";
-  # programs.neovim.nvimdots = {
-  #   enable = true;
-  #   setBuildEnv = true;
-  #   withBuildTools = true;
-  #   withHaskell = true; # If you want to use Haskell.
-  #   withGo = true;
-  #   withRust = true;
-  #   extraHaskellPackages = hsPkgs: []; # Configure packages for Haskell (nixpkgs.haskellPackages).
-  #   extraDependentPackages = with pkgs; []; # Properly setup the directory hierarchy (`lib`, `include`, and `pkgconfig`).
-  # };
+  programs.neovim.nvimdots = {
+    enable = true;
+    setBuildEnv = true;
+    withBuildTools = true;
+    withHaskell = true; # If you want to use Haskell.
+    extraHaskellPackages = hsPkgs: []; # Configure packages for Haskell (nixpkgs.haskellPackages).
+    extraDependentPackages = with pkgs; []; # Properly setup the directory hierarchy (`lib`, `include`, and `pkgconfig`).
+  };
 
   # 直接将当前文件夹的配置文件，链接到 Home 目录下的指定位置
   # home.file.".config/i3/wallpaper.jpg".source = ./wallpaper.jpg;
@@ -55,6 +57,17 @@
   #   "Xcursor.size" = 14;
   #   "Xft.dpi" = 112;
   # };
+  services.xremap = {
+    withHypr = true;
+    # userName = "fll";
+    yamlConfig = ''
+      keymap:
+        - name: Global
+            remap:
+              CapsLock:Esc
+              Esc:CapsLock
+    '';
+  };
 
   # git 相关配置
   programs.git = {
@@ -73,6 +86,8 @@
   # 建议将所有 GUI 软件，以及与 OS 关系不大的 CLI 软件，都通过 home.packages 安装
   home.packages = with pkgs; [
     # 如下是我常用的一些命令行工具，你可以根据自己的需要进行增删
+    vistafonts
+    iwd
     neofetch
     onefetch
     joshuto # terminal file manager
@@ -296,7 +311,7 @@
       theme = "dst";
     };
   };
-  # programs.git = {
+    # programs.git = {
   #   enable = true;
   #   userName  = "funny-lee";
   #   userEmail = "1750285541@qq.com";
