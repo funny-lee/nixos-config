@@ -6,7 +6,6 @@
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nvimdots.url = "github:ayamir/nvimdots";
     #nvimdots.url = "github:misumisumi/nvimdots";
-    nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     # modern window compositor
@@ -77,7 +76,6 @@
     self,
     nixpkgs,
     home-manager,
-    nix-doom-emacs,
     nvimdots,
 ...
   }: {

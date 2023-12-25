@@ -5,7 +5,7 @@
   "modules-left": [
     "custom/launcher",
     "temperature",
-    "battery",
+    "backlight",
     "wlr/workspaces"
   ],
   "modules-center": [
@@ -14,11 +14,12 @@
   "modules-right": [
     "mpd",
     "pulseaudio",
-    "backlight",
+    "battery", 
     "memory",
     "cpu",
     "network",
     "clock",
+    "idle_inhibitor",
     "custom/powermenu",
     "tray"
   ],
@@ -40,17 +41,7 @@
       "default": ""
     }
   },
-"battery": {
-    "bat": "BAT0",
-    "interval": 60,
-    "states": {
-        "warning": 20,
-        "critical": 10
-    },
-    "format": "{capacity}% {icon}",
-    "format-icons": ["", "", "", "", ""],
-    "max-length": 25
-},
+
   "clock": {
     "interval": 60,
     "align": 0,
@@ -61,7 +52,9 @@
   },
   "cpu": {
     "format": "\udb80\udf5b {usage}%",
-    "interval": 1
+    "interval": 1,
+    "on-click-middle": "kitty btop",
+    "on-click-right": "kitty btop"
   },
   "custom/launcher": {
     "format": "\uf313 ",
@@ -133,8 +126,10 @@
       "format-linked": " {ifname} (No IP)",
       "format-disconnected": "睊 Disconnected",
       "format-disabled": "睊 Disabled",
-      "format-alt": " {bandwidthUpBits} |  {bandwidthDownBits}",
+      "format-alt": " {bandwidthUpBytes} |  {bandwidthDownBytes}",
       "tooltip-format": " {ifname} via {gwaddr}",
+      "on-click-middle": "nm-connection-editor",
+      "on-click-right": "kitty nmtui"
   },
   "pulseaudio": {
       //"format": "{volume}% {icon} {format_source}",
@@ -167,8 +162,46 @@
     "format": "\uf2c9 {temperatureC}\u00b0C",
     "tooltip": false
   },
+  "backlight": {
+    "format": "{icon} {percent}%",
+    "format-icons": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ]
+  },
   "tray": {
     "icon-size": 15,
     "spacing": 5
-  }
+  },
+  "battery": {
+    "bat": "BAT0",
+    "adapter": "ADP0",
+    "interval": 60,
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    "max-length": 20,
+    "format": "{icon} {capacity}%",
+    "format-warning": "{icon} {capacity}%",
+    "format-critical": "{icon} {capacity}%",
+    "format-charging": "<span font-family='Font Awesome 6 Free'></span> {capacity}%",
+    "format-plugged": " {capacity}%",
+    "format-alt": "{icon} {time}",
+    "format-full": " {capacity}%",
+    "format-icons": [
+      " ",
+      " ",
+      " ",
+      " ",
+      " "
+    ]
+  },
 }

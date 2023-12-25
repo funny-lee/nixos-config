@@ -1,10 +1,8 @@
-{ pkgs, anyrun, ... }:
-
 {
-  imports = [
-    anyrun.homeManagerModules.default
-  ];
-
+  pkgs,
+  anyrun,
+  ...
+}: {
   programs.anyrun = {
     enable = true;
     config = {
@@ -83,5 +81,4 @@
       }
     '';
   };
-
 }

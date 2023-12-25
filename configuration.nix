@@ -201,7 +201,7 @@
       # firefox
       kate
       wget
-      clash
+      clash-meta
       alacritty
       zsh
       #  thunderbird

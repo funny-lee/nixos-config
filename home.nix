@@ -6,7 +6,6 @@
   stdenv,
   inputs,
   nvimdots,
-  nix-doom-emacs,
   xremap-flake,
   ...
 }: {
@@ -19,7 +18,6 @@
     ./coq.nix
     # ./nvimdots.nix
     nvimdots.nixosModules.nvimdots
-    nix-doom-emacs.hmModule
     xremap-flake.homeManagerModules.default
     ./neofetch
     ./development.nix
@@ -75,17 +73,20 @@
     userName = "funny-lee";
     userEmail = "1750285541@qq.com";
   };
-   programs.doom-emacs = {
-              enable = true;
-              doomPrivateDir = ./doom.d; # Directory containing your config.el, init.el
-                                         # and packages.el files
-            };
 
   # 通过 home.packages 安装一些常用的软件
   # 这些软件将仅在当前用户下可用，不会影响系统级别的配置
   # 建议将所有 GUI 软件，以及与 OS 关系不大的 CLI 软件，都通过 home.packages 安装
   home.packages = with pkgs; [
+    ocaml
+    opam
+    ocamlformat
+    ocaml-top
+    ocamlPackages.findlib
+    ocamlPackages.re
     # 如下是我常用的一些命令行工具，你可以根据自己的需要进行增删
+    cbqn
+    gparted
     vistafonts
     iwd
     neofetch
@@ -96,6 +97,8 @@
     # neovim nixpkgs-unstable.
     neovide
     tmux
+    v2ray
+    qv2ray
     tldr
     proxychains
     thefuck
@@ -113,7 +116,7 @@
     ripgrep # recursively searches directories for a regex pattern
     jq # A lightweight and flexible command-line JSON processor
     yq-go # yaml processer https://github.com/mikefarah/yq
-    exa # A modern replacement for ‘ls’
+    eza # A modern replacement for ‘ls’
     # A command-line fuzzy finder
     fd
     torrential
@@ -214,7 +217,7 @@
       nvd = "neovide";
       nf = "neofetch";
       k = "kubectl";
-      exa = "exa -all";
+      eza = "eza -all";
       urldecode = "python3 -c 'import sys, urllib.parse as ul; print(ul.untuote_plus(sys.stdin.read()))'";
       urlencode = "python3 -c 'import sys, urllib.parse as ul; print(ul.quote_plus(sys.stdin.read()))'";
       jo = "joshuto";
@@ -297,8 +300,9 @@
       cp = "cp -riv";
       cat = "bat --paging=never --style=plain";
       erd = "erd -HI";
-      ls = "exa -a --icons";
-      tree = "exa --tree --icons";
+      ls = "ls -a";
+      ll = "ls -a -l";
+      tree = "eza --tree --icons";
       nd = "nix develop -c $SHELL";
       update = "sudo nixos-rebuild switch";
       rebuild = "doas nixos-rebuild switch --flake $NIXOS_CONFIG_DIR --fast; notify-send 'Rebuild complete\!'";
