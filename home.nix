@@ -194,7 +194,7 @@
       line_break.disabled = true;
     };
   };
-
+  mylib = import ./lib {inherit lib;};
   #programs.neovim = {
   #  enable = true;
   #  vimAlias = true;
