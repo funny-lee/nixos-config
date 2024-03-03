@@ -1,6 +1,6 @@
 {
   pkgs,
-  pkgs-unstable,
+  catppuccin-cava,
   nur-ryan4yin,
   ...
 }:
@@ -21,14 +21,14 @@
     vdpauinfo
     vulkan-tools
     glxinfo
+
+    yazi  # terminal file manager
   ];
 
   # https://github.com/catppuccin/cava
-  xdg.configFile."cava/config".text =
-    ''
-      # custom cava config
-    ''
-    + builtins.readFile "${nur-ryan4yin.packages.${pkgs.system}.catppuccin-cava}/mocha.cava";
+  home.file.".config/cava/config".text = ''
+    # custom cava config
+  '' + builtins.readFile "${catppuccin-cava}/mocha.cava";
 
   programs = {
     mpv = {

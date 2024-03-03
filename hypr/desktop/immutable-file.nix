@@ -18,7 +18,7 @@
 ##############################################################################################
 with lib; let
   cfg = config.home.immutable-file;
-  immutableFileOpts = _: {
+  immutableFileOpts = {...}: {
     options = {
       src = mkOption {
         type = types.path;

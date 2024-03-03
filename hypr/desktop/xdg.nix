@@ -12,14 +12,9 @@
     xdg-user-dirs
   ];
 
-  xdg.configFile."mimeapps.list".force = true;
   xdg = {
     enable = true;
-
-    cacheHome = "${config.home.homeDirectory}/.cache";
-    configHome = "${config.home.homeDirectory}/.config";
-    dataHome = "${config.home.homeDirectory}/.local/share";
-    stateHome = "${config.home.homeDirectory}/.local/state";
+    cacheHome = config.home.homeDirectory + "/.local/cache";
 
     # manage $XDG_CONFIG_HOME/mimeapps.list
     # xdg search all desktop entries from $XDG_DATA_DIRS, check it by command:
@@ -55,8 +50,7 @@
         "x-scheme-handler/https" = browser;
         "x-scheme-handler/unknown" = browser;
 
-        "x-scheme-handler/discord" = ["discord.desktop"];
-        "x-scheme-handler/tg" = ["org.telegram.desktop.desktop "];
+
 
         "audio/*" = ["mpv.desktop"];
         "video/*" = ["mpv.dekstop"];
@@ -67,9 +61,10 @@
         "image/webp" = ["imv.desktop"];
       };
 
-      associations.removed = {
-        # ......
-      };
+      associations.removed =
+        {
+          # ......
+        };
     };
 
     userDirs = {

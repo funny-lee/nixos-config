@@ -5,6 +5,8 @@
   lib,
   stdenv,
   inputs,
+  nvimdots,
+  xremap-flake,
   ...
 }: {
   imports = [
@@ -13,16 +15,24 @@
     ./alacritty.nix
     ./joshuto
     ./hypr
+    ./coq.nix
+    xremap-flake.homeManagerModules.default
     ./neofetch
     ./development.nix
-    ./coq.nix
-    ./lib
   ];
 
   # 注意修改这里的用户名与用户目录
   home.username = "fll";
   home.homeDirectory = "/home/fll";
- 
+  programs.neovim.nvimdots = {
+    enable = true;
+    setBuildEnv = true;
+    withBuildTools = true;
+    withHaskell = true; # If you want to use Haskell.
+    extraHaskellPackages = hsPkgs: []; # Configure packages for Haskell (nixpkgs.haskellPackages).
+    extraDependentPackages = with pkgs; []; # Properly setup the directory hierarchy (`lib`, `include`, and `pkgconfig`).
+  };
+
   # 直接将当前文件夹的配置文件，链接到 Home 目录下的指定位置
   # home.file.".config/i3/wallpaper.jpg".source = ./wallpaper.jpg;
 
@@ -43,7 +53,18 @@
   #   "Xcursor.size" = 14;
   #   "Xft.dpi" = 112;
   # };
- 
+  services.xremap = {
+    withHypr = true;
+    # userName = "fll";
+    yamlConfig = ''
+      keymap:
+        - name: Global
+            remap:
+              CapsLock:Esc
+              Esc:CapsLock
+    '';
+  };
+
   # git 相关配置
   programs.git = {
     enable = true;
@@ -62,6 +83,7 @@
     ocamlPackages.findlib
     ocamlPackages.re
     # 如下是我常用的一些命令行工具，你可以根据自己的需要进行增删
+    cbqn
     gparted
     vistafonts
     iwd
@@ -78,6 +100,7 @@
     tldr
     proxychains
     thefuck
+    zellij
     yesplaymusic
     erdtree
     lazygit
@@ -111,6 +134,7 @@
     cowsay
     file
     which
+    tree
     gnused
     gnutar
     gawk
@@ -127,7 +151,7 @@
     texlive.combined.scheme-full
     flatpak
     #  nodejs
-    nodejs_21
+    nodejs_20
     deno
     # R
     racket
@@ -137,7 +161,9 @@
     nix-output-monitor
 
     # productivity
+    hugo # static site generator
     glow # markdown previewer in terminal
+    quarto
     btop # replacement of htop/nmon
     iotop # io monitoring
     iftop # network monitoring
@@ -166,7 +192,7 @@
       line_break.disabled = true;
     };
   };
-  mylib = import ./lib {inherit lib;};
+
   #programs.neovim = {
   #  enable = true;
   #  vimAlias = true;
@@ -276,7 +302,7 @@
       ll = "ls -a -l";
       tree = "eza --tree --icons";
       nd = "nix develop -c $SHELL";
-      update = "sudo nixos-rebuild switch --show-trace";
+      update = "sudo nixos-rebuild switch";
       rebuild = "doas nixos-rebuild switch --flake $NIXOS_CONFIG_DIR --fast; notify-send 'Rebuild complete\!'";
     };
 

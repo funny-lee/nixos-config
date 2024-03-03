@@ -1,3 +1,7 @@
-{mylib, ...}: {
-  imports = mylib.scanPaths ./.;
+{
+  imports = [
+    ./btop.nix
+    ./shell.nix
+    ./system-tools.nix
+  ];
 }
