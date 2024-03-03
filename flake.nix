@@ -1,15 +1,93 @@
 {
   description = "NixOS configuration";
+  outputs = inputs @ {
+    self,
+    nixpkgs,
+    home-manager,
+    ...
+    }: let
+    constants = import ./constants.nix;
 
+    # `lib.genAttrs [ "foo" "bar" ] (name: "x_" + name)` => `{ foo = "x_foo"; bar = "x_bar"; }`
+    forEachSystem = func: (nixpkgs.lib.genAttrs constants.allSystems func);
+
+    allSystemConfigurations = import ./systems {inherit self inputs constants;};
+  in
+    allSystemConfigurations
+    // {
+
+     formatter = forEachSystem (
+        system: nixpkgs.legacyPackages.${system}.alejandra
+      );
+
+    devShells = forEachSystem (
+        system: let
+          pkgs = nixpkgs.legacyPackages.${system};
+        in {
+          default = pkgs.mkShell {
+            packages = with pkgs; [
+              # fix https://discourse.nixos.org/t/non-interactive-bash-errors-from-flake-nix-mkshell/33310
+              bashInteractive
+              # fix `cc` replaced by clang, which causes nvim-treesitter compilation error
+              gcc
+            ];
+            name = "dots";
+            shellHook = ''
+              ${self.checks.${system}.pre-commit-check.shellHook}
+            '';
+          };
+        }
+      );
+    };
+
+    nixosConfigurations = {
+      # 这里的 nixos-test 替换成你的主机名称
+      nixos = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        # specialArgs = {inherit inputs;};
+        modules = [
+          ./configuration.nix
+	  ./hardware-configuration.nix
+          ./hyprland.nix
+
+	  {
+            # given the users in this list the right to specify additional substituters via:
+            #    1. `nixConfig.substituters` in `flake.nix`
+            nix.settings.trusted-users = [ "fll" ];
+          }
+          # 将 home-manager 配置为 nixos 的一个 module
+          # 这样在 nixos-rebuild switch 时，home-manager 配置也会被自动部署
+          home-manager.nixosModules.home-manager
+
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+
+            # 这里的 ryan 也得替换成你的用户名
+            # 这里的 import 函数在前面 Nix 语法中介绍过了，不再赘述
+            home-manager.users.fll = import ./home.nix;
+
+            # 使用 home-manager.extraSpecialArgs 自定义传递给 ./home.nix 的参数
+            # 取消注释下面这一行，就可以在 home.nix 中使用 flake 的所有 inputs 参数了
+            home-manager.extraSpecialArgs =  inputs;
+          }
+        ];
+      };
+    };
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.11";
+
     nvimdots.url = "github:ayamir/nvimdots";
-    #nvimdots.url = "github:misumisumi/nvimdots";
-    home-manager.url = "github:nix-community/home-manager";
+
+    home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     # modern window compositor
-    hyprland.url = "github:hyprwm/Hyprland/v0.28.0";
+    hyprland = {
+    url = "github:hyprwm/Hyprland/v0.33.1";
+    inputs.nixpkgs.follows = "nixpkgs";
+    };
     # community wayland nixpkgs
     nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
 
@@ -72,63 +150,4 @@
     };
   };
 
-  outputs = inputs @ {
-    self,
-    nixpkgs,
-    home-manager,
-    nvimdots,
-...
-  }: {
-    nixosConfigurations = {
-      # 这里的 nixos-test 替换成你的主机名称
-      nixos = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        # specialArgs = {inherit inputs;};
-        modules = [
-          ./configuration.nix
-          ./hyprland.nix
-          # 将 home-manager 配置为 nixos 的一个 module
-          # 这样在 nixos-rebuild switch 时，home-manager 配置也会被自动部署
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-
-            # 这里的 ryan 也得替换成你的用户名
-            # 这里的 import 函数在前面 Nix 语法中介绍过了，不再赘述
-            home-manager.users.fll = import ./home.nix;
-
-            # 使用 home-manager.extraSpecialArgs 自定义传递给 ./home.nix 的参数
-            # 取消注释下面这一行，就可以在 home.nix 中使用 flake 的所有 inputs 参数了
-            home-manager.extraSpecialArgs =  inputs;
-          }
-        ];
-      };
-    };
-  };
-  nixConfig = {
-    substituters = [
-      # my own cache server
-      # "https://ryan4yin.cachix.org"
-      # replace official cache with a mirror located in China
-      "https://mirrors.ustc.edu.cn/nix-channels/store"
-      "https://cache.nixos.org"
-      "https://anyrun.cachix.org"
-      "https://hyprland.cachix.org"
-    ];
-
-    # nix community's cache server
-    extra-substituters = [
-      "https://nix-community.cachix.org"
-      "https://nixpkgs-wayland.cachix.org"
-    ];
-    extra-trusted-public-keys = [
-      # "ryan4yin.cachix.org-1:Gbk27ZU5AYpGS9i3ssoLlwdvMIh0NxG0w8it/cv9kbU="
-      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-      "nixpkgs-wayland.cachix.org-1:3lwxaILxMRkVhehr5StQprHdEo4IrE8sRho9R9HOLYA="
-      "anyrun.cachix.org-1:pqBobmOjI7nKlsUMV25u9QHa9btJK65/C8vnO3p346s="
-      "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
-    ];
-  };
 }

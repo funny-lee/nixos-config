@@ -5,7 +5,7 @@
   system,
   specialArgs,
   nixos-modules,
-  home-module,
+  home-module ? null,
 }: let
   inherit (specialArgs) username;
 in
@@ -14,14 +14,6 @@ in
     modules =
       nixos-modules
       ++ [
-        {
-          # make `nix run nixpkgs#nixpkgs` use the same nixpkgs as the one used by this flake.
-          nix.registry.nixpkgs.flake = nixpkgs;
-          nix.channel.enable = false; # disable nix-channel, we use flakes instead.
-
-          nixpkgs.overlays = import ../overlays specialArgs;
-        }
-
         nixos-generators.nixosModules.all-formats
         {
           # formatConfigs.iso = {config, ...}: {};
@@ -30,14 +22,19 @@ in
             proxmox.qemuConf.name = "${config.networking.hostName}-nixos-${config.system.nixos.label}";
           };
         }
+      ]
+      ++ (
+        if (home-module != null)
+        then [
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
 
-        home-manager.nixosModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-
-          home-manager.extraSpecialArgs = specialArgs;
-          home-manager.users."${username}" = home-module;
-        }
-      ];
+            home-manager.extraSpecialArgs = specialArgs;
+            home-manager.users."${username}" = home-module;
+          }
+        ]
+        else []
+      );
   }
