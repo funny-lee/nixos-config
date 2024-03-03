@@ -1,3 +1,3 @@
-{mylib, ...}: {
-  imports = mylib.scanPaths ./.;
+{nixpkgs, ...}: {
+  imports = [./nvidia.nix];
 }

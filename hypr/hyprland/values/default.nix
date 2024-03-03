@@ -1,4 +1,9 @@
-{mylib, ...} @ args:
-map
-(path: import path args)
-(mylib.scanPaths ./.)
+{nixpkgs, ...}: {
+imports = [
+./anyrun.nix
+./default.nix
+./hyprland.nix
+./packages.nix
+./wayland-apps.nix
+];
+}
