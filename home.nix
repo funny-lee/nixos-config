@@ -24,15 +24,7 @@
   # 注意修改这里的用户名与用户目录
   home.username = "fll";
   home.homeDirectory = "/home/fll";
-  programs.neovim.nvimdots = {
-    enable = true;
-    setBuildEnv = true;
-    withBuildTools = true;
-    withHaskell = true; # If you want to use Haskell.
-    extraHaskellPackages = hsPkgs: []; # Configure packages for Haskell (nixpkgs.haskellPackages).
-    extraDependentPackages = with pkgs; []; # Properly setup the directory hierarchy (`lib`, `include`, and `pkgconfig`).
-  };
-
+  
   # 直接将当前文件夹的配置文件，链接到 Home 目录下的指定位置
   # home.file.".config/i3/wallpaper.jpg".source = ./wallpaper.jpg;
 
@@ -83,7 +75,6 @@
     ocamlPackages.findlib
     ocamlPackages.re
     # 如下是我常用的一些命令行工具，你可以根据自己的需要进行增删
-    cbqn
     gparted
     vistafonts
     iwd
@@ -280,7 +271,7 @@
 
     # Tweak settings for history
     history = {
-      save = 1000;
+      save = 1006;
       size = 1000;
       path = "$HOME/.cache/zsh_history";
     };
