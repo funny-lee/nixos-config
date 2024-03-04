@@ -1,5 +1,0 @@
-anyrun.nix
-anyrun.nixdefault.nix
-anyrun.nixhyprland.nix
-anyrun.nixpackages.nix
-anyrun.nixwayland-apps.nix

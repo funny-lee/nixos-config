@@ -7,14 +7,15 @@
   inputs,
   nvimdots,
   xremap-flake,
+  args,
   ...
 }: {
   imports = [
     ./proxychains
     ./tmux
     ./alacritty.nix
-    ./joshuto
     ./hypr
+    ./joshuto
     ./coq.nix
     xremap-flake.homeManagerModules.default
     ./neofetch
@@ -91,7 +92,6 @@
     tldr
     proxychains
     thefuck
-    zellij
     yesplaymusic
     erdtree
     lazygit
@@ -184,13 +184,13 @@
     };
   };
 
-  #programs.neovim = {
-  #  enable = true;
-  #  vimAlias = true;
-  #  vimdiffAlias = true;
-  #  defaultEditor = true;
+  programs.neovim = {
+    enable = true;
+    vimAlias = true;
+    vimdiffAlias = true;
+    defaultEditor = true;
 
-  #};
+  };
   programs.bash = {
     enable = true;
     enableCompletion = true;
@@ -271,7 +271,7 @@
 
     # Tweak settings for history
     history = {
-      save = 1006;
+      save = 1024;
       size = 1000;
       path = "$HOME/.cache/zsh_history";
     };

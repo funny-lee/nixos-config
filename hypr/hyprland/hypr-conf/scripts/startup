@@ -10,9 +10,8 @@ for _prs in "${_ps[@]}"; do
 	fi
 done
 
-# Set wallpaper via a wallpaper.service
-# it will by start by home-manager automatically, do not need to restart it here.
-# systemctl --user restart wallpaper.service
+# Set wallpaper
+swaybg --output '*' --mode fill --image ~/.config/wallpapers/default_wallpaper/house.png &
 
 # Lauch notification daemon (mako)
 ~/.config/hypr/scripts/notifications &

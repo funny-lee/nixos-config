@@ -155,7 +155,7 @@
   # https://nixos.org/manual/nix/stable/command-ref/conf-file.html#conf-auto-optimise-store
   nix.settings.auto-optimise-store = true;
   # Enable the KDE Plasma Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.displayManager.sddm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
 
   # Configure keymap in X11
@@ -238,10 +238,10 @@
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
-  # systemd.services.nix-daemon.environment = {
-  #    http_proxy = "http://127.0.0.1:7890";
-  #    https_proxy = "http://127.0.0.1:7890";
-  #  };
+   systemd.services.nix-daemon.environment = {
+      http_proxy = "http://127.0.0.1:7890";
+      https_proxy = "http://127.0.0.1:7890";
+    };
   # Set environment variables
   environment.variables = {
     XDG_DATA_HOME = "$HOME/.local/share";
@@ -262,6 +262,6 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.05"; # Did you read the comment?
+  system.stateVersion = "23.11"; # Did you read the comment?
   nix.settings.trusted-users = ["fll"];
 }

@@ -1,6 +1,7 @@
 {
   description = "NixOS configuration";
-
+  
+  
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -78,7 +79,18 @@
     home-manager,
     nvimdots,
 ...
-  }: {
+  }: let
+  inherit (inputs.nixpkgs) lib;
+  constants = import ./constants.nix;
+  mylib = import ./lib {inherit lib;};
+  in {
+
+  mylib = import ./lib {inherit lib;};
+  args = mylib.attrs.mergeAttrsList [
+    inputs
+    constants
+    {inherit self lib mylib ;}
+  ];
     nixosConfigurations = {
       # 这里的 nixos-test 替换成你的主机名称
       nixos = nixpkgs.lib.nixosSystem {
