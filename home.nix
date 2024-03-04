@@ -14,12 +14,13 @@
     ./proxychains
     ./tmux
     ./alacritty.nix
-    ./hypr
     ./joshuto
     ./coq.nix
     xremap-flake.homeManagerModules.default
     ./neofetch
+    ./rust
     ./development.nix
+    ./neovim
   ];
 
   # 注意修改这里的用户名与用户目录
@@ -69,6 +70,7 @@
   # 这些软件将仅在当前用户下可用，不会影响系统级别的配置
   # 建议将所有 GUI 软件，以及与 OS 关系不大的 CLI 软件，都通过 home.packages 安装
   home.packages = with pkgs; [
+    firefox
     ocaml
     opam
     ocamlformat
@@ -171,7 +173,7 @@
     pciutils # lspci
     usbutils # lsusb
   ];
-
+  home.sessionVariables.EDITOR = "nvim";
   # 启用 starship，这是一个漂亮的 shell 提示符
   programs.starship = {
     enable = true;
@@ -258,6 +260,8 @@
         zle     -N     fzf-history-widget-accept
         bindkey '^X^R' fzf-history-widget-accept
       eval "$(zoxide init zsh)"
+      export RUSTUP_DIST_SERVER="https://rsproxy.cn"
+      export RUSTUP_UPDATE_ROOT="https://rsproxy.cn/rustup"
     '';
 
     # basically aliases for directories:

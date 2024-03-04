@@ -156,7 +156,7 @@
   nix.settings.auto-optimise-store = true;
   # Enable the KDE Plasma Desktop Environment.
   services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  services.xserver.desktopManager.plasma5.enable = true;
 
   # Configure keymap in X11
   services.xserver = {
@@ -238,10 +238,10 @@
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
-   systemd.services.nix-daemon.environment = {
-      http_proxy = "http://127.0.0.1:7890";
-      https_proxy = "http://127.0.0.1:7890";
-    };
+  systemd.services.nix-daemon.environment = {
+      http_proxy = "127.0.0.1:7890";
+      https_proxy = "127.0.0.1:7890";
+  };
   # Set environment variables
   environment.variables = {
     XDG_DATA_HOME = "$HOME/.local/share";

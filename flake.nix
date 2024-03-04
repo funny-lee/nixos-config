@@ -10,10 +10,9 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     # modern window compositor
-    hyprland.url = "github:hyprwm/Hyprland/v0.28.0";
     # community wayland nixpkgs
     nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
-
+    rust-overlay.url = "github:oxalica/rust-overlay";
     xremap-flake.url = "github:xremap/nix-flake";
     # anyrun - a wayland launcher
     anyrun = {
@@ -67,17 +66,14 @@
       url = "github:catppuccin/starship";
       flake = false;
     };
-    catppuccin-hyprland = {
-      url = "github:catppuccin/hyprland";
-      flake = false;
-    };
-  };
+     };
 
   outputs = inputs @ {
     self,
     nixpkgs,
     home-manager,
     nvimdots,
+    rust-overlay,
 ...
   }: let
   inherit (inputs.nixpkgs) lib;
@@ -98,7 +94,10 @@
         # specialArgs = {inherit inputs;};
         modules = [
           ./configuration.nix
-          ./hyprland.nix
+	  ({ pkgs, ... }: {
+            nixpkgs.overlays = [ rust-overlay.overlays.default ];
+            environment.systemPackages = [ pkgs.rust-bin.stable.latest.default ];
+          })
           # 将 home-manager 配置为 nixos 的一个 module
           # 这样在 nixos-rebuild switch 时，home-manager 配置也会被自动部署
           home-manager.nixosModules.home-manager
