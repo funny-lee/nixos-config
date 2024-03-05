@@ -18,12 +18,12 @@
     # DO NOT install build tools for C/C++ and others, set it per project by devShell instead
     #gnumake  used by this repo, to simplify the deployment
     jdk20   # used to run some java based tools(.jar)
-
+    alejandra
     # python
     (python311.withPackages (ps:
       with ps; [
         ipython
-        pandas
+      pandas
 	numpy
 	polaris
 	matplotlib

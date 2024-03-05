@@ -8,6 +8,7 @@
   nvimdots,
   xremap-flake,
   args,
+  NvChad,
   ...
 }: {
   imports = [
@@ -20,13 +21,14 @@
     ./neofetch
     ./rust
     ./development.nix
-    ./neovim
+    ./rime
+    NvChad.homeManagerModules.default
   ];
 
   # 注意修改这里的用户名与用户目录
   home.username = "fll";
   home.homeDirectory = "/home/fll";
-  
+  programs.NvChad.enable = true;
   # 直接将当前文件夹的配置文件，链接到 Home 目录下的指定位置
   # home.file.".config/i3/wallpaper.jpg".source = ./wallpaper.jpg;
 
@@ -58,7 +60,7 @@
               Esc:CapsLock
     '';
   };
-
+  
   # git 相关配置
   programs.git = {
     enable = true;
@@ -71,6 +73,9 @@
   # 建议将所有 GUI 软件，以及与 OS 关系不大的 CLI 软件，都通过 home.packages 安装
   home.packages = with pkgs; [
     firefox
+    tcpdump
+    bcc
+    bpftrace
     ocaml
     opam
     ocamlformat
@@ -78,6 +83,8 @@
     ocamlPackages.findlib
     ocamlPackages.re
     # 如下是我常用的一些命令行工具，你可以根据自己的需要进行增删
+    #libgccjit
+    gcc_multi
     gparted
     vistafonts
     iwd
@@ -144,7 +151,7 @@
     texlive.combined.scheme-full
     flatpak
     #  nodejs
-    nodejs_20
+    nodejs_21
     deno
     # R
     racket
@@ -173,7 +180,12 @@
     pciutils # lspci
     usbutils # lsusb
   ];
-  home.sessionVariables.EDITOR = "nvim";
+
+  home.sessionVariables = rec{
+  EDITOR = "nvim";
+  HTTP_PROXY = "127.0.0.1:7890";
+  HTTPS_PROXY = "127.0.0.1:7890";
+  };
   # 启用 starship，这是一个漂亮的 shell 提示符
   programs.starship = {
     enable = true;
@@ -186,13 +198,6 @@
     };
   };
 
-  programs.neovim = {
-    enable = true;
-    vimAlias = true;
-    vimdiffAlias = true;
-    defaultEditor = true;
-
-  };
   programs.bash = {
     enable = true;
     enableCompletion = true;
@@ -282,7 +287,7 @@
 
     # Set some aliases
     shellAliases = {
-      c = "clear";
+      clr = "clear";
       mkdir = "mkdir -vp";
       rm = "rm -rifv";
       mv = "mv -iv";
@@ -293,8 +298,8 @@
       cp = "cp -riv";
       cat = "bat --paging=never --style=plain";
       erd = "erd -HI";
-      ls = "ls -a";
-      ll = "ls -a -l";
+      ls = "eza -a";
+      ll = "eza -a -l";
       tree = "eza --tree --icons";
       nd = "nix develop -c $SHELL";
       update = "sudo nixos-rebuild switch";

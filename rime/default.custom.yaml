@@ -1,0 +1,9 @@
+patch:
+  "menu/page_size": 6
+  schema_list:
+    - {schema: double_pinyin_flypy}
+  "style/horizontal": true
+
+var:
+  option:
+    simplification: true

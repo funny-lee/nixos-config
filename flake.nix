@@ -5,7 +5,8 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    nvimdots.url = "github:ayamir/nvimdots";
+    # nvimdots.url = "github:ayamir/nvimdots";
+    NvChad.url = "github:NvChad/nix";
     #nvimdots.url = "github:misumisumi/nvimdots";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -72,9 +73,9 @@
     self,
     nixpkgs,
     home-manager,
-    nvimdots,
+    NvChad,
     rust-overlay,
-...
+    ...
   }: let
   inherit (inputs.nixpkgs) lib;
   constants = import ./constants.nix;
@@ -87,6 +88,9 @@
     constants
     {inherit self lib mylib ;}
   ];
+  
+  
+
     nixosConfigurations = {
       # 这里的 nixos-test 替换成你的主机名称
       nixos = nixpkgs.lib.nixosSystem {
@@ -122,6 +126,7 @@
       # my own cache server
       # "https://ryan4yin.cachix.org"
       # replace official cache with a mirror located in China
+      "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
       "https://mirrors.ustc.edu.cn/nix-channels/store"
       "https://cache.nixos.org"
       "https://anyrun.cachix.org"
