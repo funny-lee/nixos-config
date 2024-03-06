@@ -137,24 +137,24 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
   services.postgresql = {
-  enable = true;
-  ensureDatabases = [ "mydatabase" ];
-  enableTCPIP = true;
-  # port = 5432;
-  authentication = pkgs.lib.mkOverride 10 ''
-    #...
-    #type database DBuser origin-address auth-method
-    # ipv4
-    host  all      all     127.0.0.1/32   trust
-    # ipv6
-    host all       all     ::1/128        trust
-  '';
-  initialScript = pkgs.writeText "backend-initScript" ''
-    CREATE ROLE nixcloud WITH LOGIN PASSWORD 'nixcloud' CREATEDB;
-    CREATE DATABASE nixcloud;
-    GRANT ALL PRIVILEGES ON DATABASE nixcloud TO nixcloud;
-  '';
-};
+    enable = true;
+    ensureDatabases = ["mydatabase"];
+    enableTCPIP = true;
+    # port = 5432;
+    authentication = pkgs.lib.mkOverride 10 ''
+      #...
+      #type database DBuser origin-address auth-method
+      # ipv4
+      host  all      all     127.0.0.1/32   trust
+      # ipv6
+      host all       all     ::1/128        trust
+    '';
+    initialScript = pkgs.writeText "backend-initScript" ''
+      CREATE ROLE nixcloud WITH LOGIN PASSWORD 'nixcloud' CREATEDB;
+      CREATE DATABASE nixcloud;
+      GRANT ALL PRIVILEGES ON DATABASE nixcloud TO nixcloud;
+    '';
+  };
   nix.settings.substituters = ["https://mirrors.ustc.edu.cn/nix-channels/store"];
   boot.loader.systemd-boot.configurationLimit = 7;
   # boot.loader.grub.configurationLimit = 10;
@@ -173,9 +173,7 @@
     # note: ssh-copy-id will add user@your-machine after the public key
     # but we can remove the "@your-machine" part
   ];
-virtualisation.docker.enable = true;
-
-
+  virtualisation.docker.enable = true;
 
   # Optimise storage
   # you can alse optimise the store manually via:
@@ -190,10 +188,6 @@ virtualisation.docker.enable = true;
   services.xserver = {
     layout = "cn";
     xkbVariant = "";
-  };
-  services.xserver.windowManager.xmonad = {
-    enable = true;
-    enableContribAndExtras = true;
   };
 
   # Enable CUPS to print documents.

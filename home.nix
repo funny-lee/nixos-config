@@ -22,6 +22,8 @@
     ./rust
     ./development.nix
     ./rime
+    ./coq.nix
+    ./emacs
     NvChad.homeManagerModules.default
   ];
 
@@ -180,6 +182,9 @@
     ethtool
     pciutils # lspci
     usbutils # lsusb
+    gdb
+    gdbgui
+    qq
   ];
 
   home.sessionVariables = rec {

@@ -5,8 +5,12 @@
 }: {
   home = {
     packages = with pkgs; [
-      coqPackages.coq
+      coqPackages.gaia
+      coq
       coqPackages.coq-lsp
+      coqPackages.stdpp
+      coqPackages.corn
+      coqPackages.HoTT
     ];
   };
 }
