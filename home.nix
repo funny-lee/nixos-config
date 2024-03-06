@@ -9,6 +9,7 @@
   xremap-flake,
   args,
   NvChad,
+  doomemacs,
   ...
 }: {
   imports = [
@@ -23,7 +24,7 @@
     ./development.nix
     ./rime
     ./coq.nix
-    ./emacs
+    ./doom.nix
     NvChad.homeManagerModules.default
     ./packages.nix
   ];
@@ -194,9 +195,6 @@
     # HTTPS_PROXY = "127.0.0.1:7890";
   };
 
-  modules.editors.emacs = {
-    enable = true;
-  };
 
   # 启用 starship，这是一个漂亮的 shell 提示符
   programs.starship = {
