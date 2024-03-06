@@ -1,7 +1,4 @@
-{
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   #############################################################
   #
   #  Basic settings for development environment
@@ -17,16 +14,16 @@
 
     # DO NOT install build tools for C/C++ and others, set it per project by devShell instead
     #gnumake  used by this repo, to simplify the deployment
-    jdk20   # used to run some java based tools(.jar)
+    jdk20 # used to run some java based tools(.jar)
     alejandra
     # python
     (python311.withPackages (ps:
       with ps; [
         ipython
-      pandas
-	numpy
-	polaris
-	matplotlib
+        pandas
+        numpy
+        polaris
+        matplotlib
         requests
         pyquery
         pyyaml
@@ -43,7 +40,7 @@
     #minicom
 
     # other tools
-    bfg-repo-cleaner  # remove large files from git history
+    bfg-repo-cleaner # remove large files from git history
     #k6 # load testing tool
     #mitmproxy # http/https proxy tool
     protobuf # protocol buffer compiler

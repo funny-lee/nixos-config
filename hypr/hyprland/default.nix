@@ -1,4 +1,9 @@
-{pkgs, hyprland, catppuccin-hyprland, ...}: {
+{
+  pkgs,
+  hyprland,
+  catppuccin-hyprland,
+  ...
+}: {
   imports = [
     # hyprland.homeManagerModules.default
 
@@ -42,5 +47,4 @@
     "WLR_NO_HARDWARE_CURSORS" = "1";
     "WLR_EGL_NO_MODIFIRES" = "1";
   };
-
 }

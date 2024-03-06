@@ -60,7 +60,6 @@
               Esc:CapsLock
     '';
   };
-  
   # git 相关配置
   programs.git = {
     enable = true;
@@ -72,6 +71,7 @@
   # 这些软件将仅在当前用户下可用，不会影响系统级别的配置
   # 建议将所有 GUI 软件，以及与 OS 关系不大的 CLI 软件，都通过 home.packages 安装
   home.packages = with pkgs; [
+    nodePackages.pnpm
     firefox
     tcpdump
     bcc
@@ -84,6 +84,7 @@
     ocamlPackages.re
     # 如下是我常用的一些命令行工具，你可以根据自己的需要进行增删
     #libgccjit
+    pkg-configUpstream
     gcc_multi
     gparted
     vistafonts
@@ -181,10 +182,10 @@
     usbutils # lsusb
   ];
 
-  home.sessionVariables = rec{
-  EDITOR = "nvim";
-  HTTP_PROXY = "127.0.0.1:7890";
-  HTTPS_PROXY = "127.0.0.1:7890";
+  home.sessionVariables = rec {
+    EDITOR = "nvim";
+    # HTTP_PROXY = "127.0.0.1:7890";
+    # HTTPS_PROXY = "127.0.0.1:7890";
   };
   # 启用 starship，这是一个漂亮的 shell 提示符
   programs.starship = {
@@ -313,7 +314,7 @@
       theme = "dst";
     };
   };
-    # programs.git = {
+  # programs.git = {
   #   enable = true;
   #   userName  = "funny-lee";
   #   userEmail = "1750285541@qq.com";

@@ -19,7 +19,7 @@
     "*.dpi" = 162;
   };
 
-  # gtk's theme settings, generate files: 
+  # gtk's theme settings, generate files:
   #   1. ~/.gtkrc-2.0
   #   2. ~/.config/gtk-3.0/settings.ini
   #   3. ~/.config/gtk-4.0/settings.ini
@@ -43,7 +43,7 @@
       name = "Catppuccin-Macchiato-Compact-Pink-dark";
       package = pkgs.catppuccin-gtk.override {
         # https://github.com/NixOS/nixpkgs/blob/nixos-23.05/pkgs/data/themes/catppuccin-gtk/default.nix
-        accents = [ "pink" ];
+        accents = ["pink"];
         size = "compact";
         variant = "mocha";
       };

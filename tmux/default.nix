@@ -32,17 +32,17 @@ in {
         # Continuous saving of tmux environment. Automatic restore when tmux is started.
         plugin = continuum;
         extraConfig = ''
-          set -g @continuum-save-interval '15'
+                 set -g @continuum-save-interval '15'
 
-          # Option to display current status of tmux continuum in tmux status line.
-          set -g status-right 'Continuum status: #{continuum_status}'
-	  # Mouse works as expected
-          set-option -g mouse on
-          # easy-to-remember split pane commands
-          bind | split-window -h -c "#{pane_current_path}"
-          bind - split-window -v -c "#{pane_current_path}"
-          bind c new-window -c "#{pane_current_path}"
-          '';
+                 # Option to display current status of tmux continuum in tmux status line.
+                 set -g status-right 'Continuum status: #{continuum_status}'
+          # Mouse works as expected
+                 set-option -g mouse on
+                 # easy-to-remember split pane commands
+                 bind | split-window -h -c "#{pane_current_path}"
+                 bind - split-window -v -c "#{pane_current_path}"
+                 bind c new-window -c "#{pane_current_path}"
+        '';
       }
       {
         # https://github.com/tmux-plugins/tmux-resurrect

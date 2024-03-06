@@ -1,9 +1,12 @@
-{ pkgs, config, ... }:
 {
+  pkgs,
+  config,
+  ...
+}: {
   home = {
     packages = with pkgs; [
-    coqPackages.coq
-    coqPackages.coq-lsp
+      coqPackages.coq
+      coqPackages.coq-lsp
     ];
   };
 }

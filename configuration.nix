@@ -10,7 +10,7 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
   ];
-  environment.pathsToLink = [ "/share/zsh" ];
+  environment.pathsToLink = ["/share/zsh"];
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -133,9 +133,28 @@
     #    rime
     #  ];
   };
-  
+
   # Enable the X11 windowing system.
   services.xserver.enable = true;
+  services.postgresql = {
+  enable = true;
+  ensureDatabases = [ "mydatabase" ];
+  enableTCPIP = true;
+  # port = 5432;
+  authentication = pkgs.lib.mkOverride 10 ''
+    #...
+    #type database DBuser origin-address auth-method
+    # ipv4
+    host  all      all     127.0.0.1/32   trust
+    # ipv6
+    host all       all     ::1/128        trust
+  '';
+  initialScript = pkgs.writeText "backend-initScript" ''
+    CREATE ROLE nixcloud WITH LOGIN PASSWORD 'nixcloud' CREATEDB;
+    CREATE DATABASE nixcloud;
+    GRANT ALL PRIVILEGES ON DATABASE nixcloud TO nixcloud;
+  '';
+};
   nix.settings.substituters = ["https://mirrors.ustc.edu.cn/nix-channels/store"];
   boot.loader.systemd-boot.configurationLimit = 7;
   # boot.loader.grub.configurationLimit = 10;
@@ -147,8 +166,17 @@
     options = "--delete-older-than 1w";
   };
   hardware.uinput.enable = true;
-  users.groups.input.members = [ "fll" ];
-  users.groups.uinput.members = [ "fll" ];
+  users.groups.input.members = ["fll"];
+  users.groups.uinput.members = ["fll"];
+  users.users."fll".openssh.authorizedKeys.keys = [
+    "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDRzAXnLdt96xG3RRJiGDUu+YNFRR3BhsHzuyOfhp1DvYy547k8YQwX/kJWuSwL6LNt5boLkC24BIfo9btu9ZN7Nxnf7w7Lh3kORLQ+Co/OTvblVORWpN1boA3Q12nirRJpxjC6gxKrd63L3Nl5BHhmex92jHahNPyVs+UQu+FF0uKsIxd//UpvHjhR+HlmGRBNZ7bN3xutwfkYAsKjllObX2IhyaC/28XFtb/Uzs5+ZPvWFsUgOtY45uDtD5AcEL8A5tCnoDWIZBaV1lWBt7uLCVIOx6qbWGOgHuflyxwR5Ku92rvZjrlJKK/oNZ8zEhoQE4mbRueA0T+p/liQvmwrheBprDWJhfO7hNKMsbIaas/MKorVCkhPmRzXGVmuVG8RDtSUwyVrk3sMhoqWZAAmWqVwFfapd5DHrk0Xgm0C8xRsvSX6+0RKGT51fuXq6QmrMen6NyTbgiYg+Cu7GvhmDsuFCdr1g+yxGgwtHBbtb7mJDkvCUtu8h8WOkPwvpzrwS5ihg87CdDo7r0dvlf3HKbgjwXleihUltuAc2QdOwpK79kXMUim4SVOJ3PXj3zujRgtDXMRLhFk7e2Hb+sBYx10vL1LviVckmCJF3UGIY0pPZXxGohcXo/SNSDoMDQSltIrY6dXs7wcbNSFjLjjKKt7PPyy0Yjs2Ip9nRUk3Fw== 1750285541@qq.com" # content of authorized_keys file
+    # note: ssh-copy-id will add user@your-machine after the public key
+    # but we can remove the "@your-machine" part
+  ];
+virtualisation.docker.enable = true;
+
+
+
   # Optimise storage
   # you can alse optimise the store manually via:
   #    nix-store --optimise
@@ -196,7 +224,7 @@
     isNormalUser = true;
     shell = pkgs.zsh;
     description = "fll";
-    extraGroups = ["networkmanager" "wheel"];
+    extraGroups = ["networkmanager" "wheel" "docker"];
     packages = with pkgs; [
       # firefox
       kate
@@ -239,8 +267,8 @@
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
   systemd.services.nix-daemon.environment = {
-      http_proxy = "127.0.0.1:7890";
-      https_proxy = "127.0.0.1:7890";
+    http_proxy = "127.0.0.1:7890";
+    https_proxy = "127.0.0.1:7890";
   };
   # Set environment variables
   environment.variables = {

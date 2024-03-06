@@ -50,8 +50,6 @@
         "x-scheme-handler/https" = browser;
         "x-scheme-handler/unknown" = browser;
 
-
-
         "audio/*" = ["mpv.desktop"];
         "video/*" = ["mpv.dekstop"];
         "image/*" = ["imv.desktop"];
@@ -61,10 +59,9 @@
         "image/webp" = ["imv.desktop"];
       };
 
-      associations.removed =
-        {
-          # ......
-        };
+      associations.removed = {
+        # ......
+      };
     };
 
     userDirs = {

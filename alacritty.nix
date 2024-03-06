@@ -1,4 +1,8 @@
-{pkgs, catppuccin-alacritty, ...}:
+{
+  pkgs,
+  catppuccin-alacritty,
+  ...
+}:
 ###########################################################
 #
 # Alacritty Configuration
@@ -96,7 +100,7 @@
         # holder identation
           # Point size
           size: 15
-        shell:  
+        shell:
           program:  /run/current-system/sw/bin/zsh
 
       ''

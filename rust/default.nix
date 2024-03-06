@@ -1,5 +1,3 @@
-{lib,...}:{
-
-home.file.".cargo/config".source = ./config;
-
+{lib, ...}: {
+  home.file.".cargo/config".source = ./config;
 }

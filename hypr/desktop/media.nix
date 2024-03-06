@@ -22,13 +22,15 @@
     vulkan-tools
     glxinfo
 
-      # terminal file manager
+    # terminal file manager
   ];
 
   # https://github.com/catppuccin/cava
-  home.file.".config/cava/config".text = ''
-    # custom cava config
-  '' + builtins.readFile "${catppuccin-cava}/mocha.cava";
+  home.file.".config/cava/config".text =
+    ''
+      # custom cava config
+    ''
+    + builtins.readFile "${catppuccin-cava}/mocha.cava";
 
   programs = {
     mpv = {

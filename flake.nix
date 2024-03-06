@@ -1,7 +1,6 @@
 {
   description = "NixOS configuration";
-  
-  
+
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -67,7 +66,7 @@
       url = "github:catppuccin/starship";
       flake = false;
     };
-     };
+  };
 
   outputs = inputs @ {
     self,
@@ -77,19 +76,16 @@
     rust-overlay,
     ...
   }: let
-  inherit (inputs.nixpkgs) lib;
-  constants = import ./constants.nix;
-  mylib = import ./lib {inherit lib;};
+    inherit (inputs.nixpkgs) lib;
+    constants = import ./constants.nix;
+    mylib = import ./lib {inherit lib;};
   in {
-
-  mylib = import ./lib {inherit lib;};
-  args = mylib.attrs.mergeAttrsList [
-    inputs
-    constants
-    {inherit self lib mylib ;}
-  ];
-  
-  
+    mylib = import ./lib {inherit lib;};
+    args = mylib.attrs.mergeAttrsList [
+      inputs
+      constants
+      {inherit self lib mylib;}
+    ];
 
     nixosConfigurations = {
       # 这里的 nixos-test 替换成你的主机名称
@@ -98,9 +94,9 @@
         # specialArgs = {inherit inputs;};
         modules = [
           ./configuration.nix
-	  ({ pkgs, ... }: {
-            nixpkgs.overlays = [ rust-overlay.overlays.default ];
-            environment.systemPackages = [ pkgs.rust-bin.stable.latest.default ];
+          ({pkgs, ...}: {
+            nixpkgs.overlays = [rust-overlay.overlays.default];
+            environment.systemPackages = [pkgs.rust-bin.stable.latest.default];
           })
           # 将 home-manager 配置为 nixos 的一个 module
           # 这样在 nixos-rebuild switch 时，home-manager 配置也会被自动部署
@@ -115,7 +111,7 @@
 
             # 使用 home-manager.extraSpecialArgs 自定义传递给 ./home.nix 的参数
             # 取消注释下面这一行，就可以在 home.nix 中使用 flake 的所有 inputs 参数了
-            home-manager.extraSpecialArgs =  inputs;
+            home-manager.extraSpecialArgs = inputs;
           }
         ];
       };
