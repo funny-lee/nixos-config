@@ -17,18 +17,7 @@
     jdk20 # used to run some java based tools(.jar)
     alejandra
     # python
-    (python311.withPackages (ps:
-      with ps; [
-        ipython
-        pandas
-        numpy
-        polaris
-        matplotlib
-        requests
-        pyquery
-        pyyaml
-      ]))
-
+    
     # db related
     #dbeaver
     #mycli

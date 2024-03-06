@@ -136,13 +136,20 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
+  nix.settings.substituters = ["https://mirrors.ustc.edu.cn/nix-channels/store"];
+  boot.loader.systemd-boot.configurationLimit = 7;
+  # boot.loader.grub.configurationLimit = 10;
   services.postgresql = {
     enable = true;
     ensureDatabases = ["mydatabase"];
     enableTCPIP = true;
     # port = 5432;
+    settings = {
+      listen_addresses = "*";
+    };
     authentication = pkgs.lib.mkOverride 10 ''
       #...
+      local all       all     trust
       #type database DBuser origin-address auth-method
       # ipv4
       host  all      all     127.0.0.1/32   trust
@@ -155,9 +162,6 @@
       GRANT ALL PRIVILEGES ON DATABASE nixcloud TO nixcloud;
     '';
   };
-  nix.settings.substituters = ["https://mirrors.ustc.edu.cn/nix-channels/store"];
-  boot.loader.systemd-boot.configurationLimit = 7;
-  # boot.loader.grub.configurationLimit = 10;
 
   # do garbage collection weekly to keep disk usage low
   nix.gc = {
@@ -186,8 +190,10 @@
 
   # Configure keymap in X11
   services.xserver = {
-    layout = "cn";
-    xkbVariant = "";
+    xkb = {
+      layout = "cn";
+      variant = "";
+    };
   };
 
   # Enable CUPS to print documents.

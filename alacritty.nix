@@ -24,85 +24,39 @@
 #
 ###########################################################
 {
-  xdg.configFile."alacritty/theme_catppuccin.yml".source = "${catppuccin-alacritty}/catppuccin-mocha.yml";
+  xdg.configFile."alacritty/rose-pine-moon.toml".source = ./rose-pine-moon.toml;
   programs.alacritty = {
     enable = true;
   };
 
-  xdg.configFile."alacritty/alacritty.yml".text =
-    ''
-      import:
-        # all alacritty themes can be found at
-        #    https://github.com/alacritty/alacritty-theme
-        - ~/.config/alacritty/theme_catppuccin.yml
+  xdg.configFile."alacritty/alacritty.toml".text =
+''
+import = ["~/.config/alacritty/rose-pine-moon.toml"]
 
-      window:
-        # Background opacity
-        #
-        # Window opacity as a floating point number from `0.0` to `1.0`.
-        # The value `0.0` is completely transparent and `1.0` is opaque.
-        opacity: 0.95
+[font]
+size = 15
 
-        # Startup Mode (changes require restart)
-        #
-        # Values for `startup_mode`:
-        #   - Windowed
-        #   - Maximized
-        #   - Fullscreen
-        #
-        # Values for `startup_mode` (macOS only):
-        #   - SimpleFullscreen
-        startup_mode: Maximized
+[font.bold]
+family = "JetBrainsMono Nerd Font"
 
-        # Allow terminal applications to change Alacritty's window title.
-        dynamic_title: true
+[font.bold_italic]
+family = "JetBrainsMono Nerd Font"
 
-        # Make `Option` key behave as `Alt` (macOS only):
-        #   - OnlyLeft
-        #   - OnlyRight
-        #   - Both
-        #   - None (default)
-        option_as_alt: Both
+[font.italic]
+family = "JetBrainsMono Nerd Font"
 
-      scrolling:
-        # Maximum number of lines in the scrollback buffer.
-        # Specifying '0' will disable scrolling.
-        history: 10000
+[font.normal]
+family = "JetBrainsMono Nerd Font"
 
-        # Scrolling distance multiplier.
-        #multiplier: 3
+[scrolling]
+history = 10000
 
-      # Font configuration
-      font:
-        # Normal (roman) font face
-        bold:
-          family: JetBrainsMono Nerd Font
-        italic:
-          family: JetBrainsMono Nerd Font
-        normal:
-          family: JetBrainsMono Nerd Font
-        bold_italic:
-          # Font family
-          #
-          # If the bold italic family is not specified, it will fall back to the
-          # value specified for the normal font.
-          family: JetBrainsMono Nerd Font
-    ''
-    + (
-      if pkgs.stdenv.isDarwin
-      then ''
-          # Point size
-          size: 14
-        shell:  # force nushell as default shell on macOS
-          program:  /run/current-system/sw/bin/nu
-      ''
-      else ''
-        # holder identation
-          # Point size
-          size: 15
-        shell:
-          program:  /run/current-system/sw/bin/zsh
+[shell]
+program = "/run/current-system/sw/bin/zsh"
 
-      ''
-    );
+[window]
+dynamic_title = true
+opacity = 0.95
+startup_mode = "Maximized"
+'';
 }

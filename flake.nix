@@ -19,7 +19,10 @@
       url = "github:Kirottu/anyrun";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
+ doomemacs = {
+      url = "github:doomemacs/doomemacs";
+      flake = false;
+    };
     # astronvim = {
     #   url = "github:AstroNvim/AstroNvim/v3.36.0";
     #   flake = false;
@@ -74,6 +77,7 @@
     home-manager,
     NvChad,
     rust-overlay,
+    doomemacs,
     ...
   }: let
     inherit (inputs.nixpkgs) lib;

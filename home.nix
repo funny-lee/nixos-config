@@ -25,6 +25,7 @@
     ./coq.nix
     ./emacs
     NvChad.homeManagerModules.default
+    ./packages.nix
   ];
 
   # 注意修改这里的用户名与用户目录
@@ -192,6 +193,11 @@
     # HTTP_PROXY = "127.0.0.1:7890";
     # HTTPS_PROXY = "127.0.0.1:7890";
   };
+
+  modules.editors.emacs = {
+    enable = true;
+  };
+
   # 启用 starship，这是一个漂亮的 shell 提示符
   programs.starship = {
     enable = true;
