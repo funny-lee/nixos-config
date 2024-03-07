@@ -7,6 +7,7 @@
 
   home.packages = with pkgs;
     [
+      pgadmin4
       #-- c/c++
       cmake
       cmake-language-server

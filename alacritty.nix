@@ -29,34 +29,33 @@
     enable = true;
   };
 
-  xdg.configFile."alacritty/alacritty.toml".text =
-''
-import = ["~/.config/alacritty/rose-pine-moon.toml"]
+  xdg.configFile."alacritty/alacritty.toml".text = ''
+    import = ["~/.config/alacritty/rose-pine-moon.toml"]
 
-[font]
-size = 15
+    [font]
+    size = 15
 
-[font.bold]
-family = "JetBrainsMono Nerd Font"
+    [font.bold]
+    family = "JetBrainsMono Nerd Font"
 
-[font.bold_italic]
-family = "JetBrainsMono Nerd Font"
+    [font.bold_italic]
+    family = "JetBrainsMono Nerd Font"
 
-[font.italic]
-family = "JetBrainsMono Nerd Font"
+    [font.italic]
+    family = "JetBrainsMono Nerd Font"
 
-[font.normal]
-family = "JetBrainsMono Nerd Font"
+    [font.normal]
+    family = "JetBrainsMono Nerd Font"
 
-[scrolling]
-history = 10000
+    [scrolling]
+    history = 10000
 
-[shell]
-program = "/run/current-system/sw/bin/zsh"
+    [shell]
+    program = "/run/current-system/sw/bin/zsh"
 
-[window]
-dynamic_title = true
-opacity = 0.95
-startup_mode = "Maximized"
-'';
+    [window]
+    dynamic_title = true
+    opacity = 0.95
+    startup_mode = "Maximized"
+  '';
 }

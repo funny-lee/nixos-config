@@ -17,7 +17,7 @@
     jdk20 # used to run some java based tools(.jar)
     alejandra
     # python
-    
+
     # db related
     #dbeaver
     #mycli

@@ -80,23 +80,32 @@
   };
   fonts = {
     fontDir.enable = true;
-    packages = with pkgs; [
-      noto-fonts
-      # noto-fonts-cjk-sans
-      # noto-fonts-cjk-serif
-      source-han-sans
-      source-han-serif
-      sarasa-gothic #更纱黑体
-      source-code-pro
-      hack-font
-      jetbrains-mono
-      fira-code
-      intel-one-mono
-      mononoki
-      (nerdfonts.override {fonts = ["JetBrainsMono" "FiraCode"];})
-    ];
+    packages = with pkgs;
+      [
+        noto-fonts
+        # noto-fonts-cjk-sans
+        # noto-fonts-cjk-serif
+        source-han-sans
+        source-han-serif
+        sarasa-gothic #更纱黑体
+        source-code-pro
+        hack-font
+        jetbrains-mono
+        fira-code
+        intel-one-mono
+        mononoki
+        (nerdfonts.override {fonts = ["JetBrainsMono" "FiraCode"];})
+      ]
+      ++ [
+        nodePackages_latest.pnpm
+        nodePackages_latest.vercel
+        nodePackages_latest.prisma
+      ];
   };
-
+  # Prisma:
+  environment.variables.PRISMA_QUERY_ENGINE_LIBRARY = "${pkgs.prisma-engines}/lib/libquery_engine.node";
+  environment.variables.PRISMA_QUERY_ENGINE_BINARY = "${pkgs.prisma-engines}/bin/query-engine";
+  environment.variables.PRISMA_SCHEMA_ENGINE_BINARY = "${pkgs.prisma-engines}/bin/schema-engine";
   # 简单配置一下 fontconfig 字体顺序，以免 fallback 到不想要的字体
   fonts.fontconfig = {
     defaultFonts = {
@@ -178,7 +187,7 @@
     # but we can remove the "@your-machine" part
   ];
   virtualisation.docker.enable = true;
-
+  virtualisation.containers.cdi.dynamic.nvidia.enable = true;
   # Optimise storage
   # you can alse optimise the store manually via:
   #    nix-store --optimise
@@ -186,7 +195,7 @@
   nix.settings.auto-optimise-store = true;
   # Enable the KDE Plasma Desktop Environment.
   services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
+  services.xserver.desktopManager.plasma6.enable = true;
 
   # Configure keymap in X11
   services.xserver = {
