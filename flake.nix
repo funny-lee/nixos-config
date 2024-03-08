@@ -19,7 +19,11 @@
       url = "github:Kirottu/anyrun";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
+    # nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
+    #  nix-straight = {
+    #   url = "github:codingkoi/nix-straight.el?ref=codingkoi/apply-librephoenixs-fix";
+    #   flake = false;
+    # };
     # astronvim = {
     #   url = "github:AstroNvim/AstroNvim/v3.36.0";
     #   flake = false;
@@ -74,7 +78,6 @@
     home-manager,
     NvChad,
     rust-overlay,
-    nix-doom-emacs,
     ...
   }: let
     inherit (inputs.nixpkgs) lib;
