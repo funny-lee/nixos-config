@@ -31,12 +31,7 @@
   home.username = "fll";
   home.homeDirectory = "/home/fll";
   programs.NvChad.enable = true;
-  # programs.doom-emacs = {
-  #   enable = true;
-  #   doomPrivateDir = ./doom.d; # Directory containing your config.el, init.el
-  #   
-  #   # and packages.el files
-  # };
+
   # 直接将当前文件夹的配置文件，链接到 Home 目录下的指定位置
   # home.file.".config/i3/wallpaper.jpg".source = ./wallpaper.jpg;
 
@@ -191,10 +186,15 @@
     gdb
     gdbgui
     qq
+
+    glib
+    glib-networking
   ];
 
   home.sessionVariables = rec {
     EDITOR = "nvim";
+
+    GIO_MODULE_DIR = "${pkgs.glib-networking}/lib/gio/modules/";
     # HTTP_PROXY = "127.0.0.1:7890";
     # HTTPS_PROXY = "127.0.0.1:7890";
   };
