@@ -14,9 +14,9 @@
 
   boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod"];
   boot.initrd.kernelModules = [];
-  boot.kernelModules = ["kvm-intel"];
+  boot.kernelModules = ["kvm-intel" "nvidia"];
   boot.extraModulePackages = [];
-
+  boot.kernelParams = [];
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/6318351e-6ed8-423e-9e1f-2e7d2ac8e735";
     fsType = "ext4";

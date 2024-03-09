@@ -94,6 +94,10 @@
         fira-code
         intel-one-mono
         mononoki
+        nvidia-container-toolkit
+        cudaPackagesGoogle.cudatoolkit
+        cudaPackagesGoogle.cudnn_8_6
+
         (nerdfonts.override {fonts = ["JetBrainsMono" "FiraCode"];})
       ]
       ++ [
@@ -178,7 +182,7 @@
     dates = "weekly";
     options = "--delete-older-than 1w";
   };
-  services.xserver.videoDrivers = ["nvidiaLegacy470"]; # or "nvidiaLegacy470
+  services.xserver.videoDrivers = ["nvidia"]; # or "nvidiaLegacy470
   hardware.nvidia = {
     # Modesetting is required.
     modesetting.enable = true;
@@ -187,11 +191,16 @@
     # Enable this if you have graphical corruption issues or application crashes after waking
     # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead
     # of just the bare essentials.
-    powerManagement.enable = false;
+    powerManagement = {
+      enable = true;
 
+      # note: this option doesn't currently do the right thing when you have a pre-Ampere card.
+      # if you do, add "nvidia.NVreg_DynamicPowerManagement=0x02" to your kernelParams.
+      # for Ampere and newer cards, this option is on by default.
+      finegrained = true;
+    };
     # Fine-grained power management. Turns off GPU when not in use.
     # Experimental and only works on modern Nvidia GPUs (Turing or newer).
-    powerManagement.finegrained = false;
 
     # Use the NVidia open source kernel module (not to be confused with the
     # independent third-party "nouveau" open source driver).
@@ -201,7 +210,7 @@
     # Only available from driver 515.43.04+
     # Currently alpha-quality/buggy, so false is currently the recommended setting.
     open = false;
-
+    nvidiaPersistenced = true;
     # Enable the Nvidia settings menu,
     # accessible via `nvidia-settings`.
     nvidiaSettings = true;
@@ -210,6 +219,7 @@
     package = config.boot.kernelPackages.nvidiaPackages.legacy_470;
 
     prime = {
+      offload.enable = true;
       # Make sure to use the correct Bus ID values for your system!
       intelBusId = "PCI:0:2:0";
       nvidiaBusId = "PCI:1:0:0";
@@ -285,6 +295,7 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.nvidia.acceptLicense = true;
   boot.supportedFilesystems = ["ntfs"];
   # List packages installed in system profile. To search, run:
   # $ nix search wget
