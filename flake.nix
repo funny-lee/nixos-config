@@ -39,6 +39,10 @@
       flake = false;
     };
 
+    catppuccin-hyprland = {
+      url = "github:catppuccin/hyprland";
+      flake = false;
+    };
     # generate iso/qcow2/docker/... image from nixos configuration
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
@@ -98,6 +102,7 @@
         # specialArgs = {inherit inputs;};
         modules = [
           ./configuration.nix
+          ./hyprland.nix
           ({pkgs, ...}: {
             nixpkgs.overlays = [rust-overlay.overlays.default];
             environment.systemPackages = [pkgs.rust-bin.stable.latest.default];
