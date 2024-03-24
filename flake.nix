@@ -5,7 +5,6 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     # nvimdots.url = "github:ayamir/nvimdots";
-    NvChad.url = "github:NvChad/nix";
     #nvimdots.url = "github:misumisumi/nvimdots";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -80,7 +79,6 @@
     self,
     nixpkgs,
     home-manager,
-    NvChad,
     rust-overlay,
     ...
   }: let
@@ -131,7 +129,7 @@
       # my own cache server
       # "https://ryan4yin.cachix.org"
       # replace official cache with a mirror located in China
-      "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
+      # "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
       "https://mirrors.ustc.edu.cn/nix-channels/store"
       "https://cache.nixos.org"
       "https://anyrun.cachix.org"

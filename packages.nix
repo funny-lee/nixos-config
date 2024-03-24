@@ -16,7 +16,7 @@
       # c/c++ compiler, required by nvim-treesitter!
       # c/c++ tools with clang-tools, the unwrapped version won't
       # add alias like `cc` and `c++`, so that it won't conflict with gcc
-      llvmPackages.clang-unwrapped
+      llvmPackages_16.clang-unwrapped
       lldb
 
       #-- python
@@ -113,7 +113,6 @@
       glow # markdown previewer
       fzf
       pandoc # document converter
-      hugo # static site generator
 
       #-- Optional Requirements:
       gdu # disk usage analyzer, required by AstroNvim

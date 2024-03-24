@@ -8,7 +8,6 @@
   nvimdots,
   xremap-flake,
   args,
-  NvChad,
   ...
 }: {
   imports = [
@@ -23,14 +22,12 @@
     ./development.nix
     ./coq.nix
     ./hypr
-    NvChad.homeManagerModules.default
     ./packages.nix
   ];
 
   # 注意修改这里的用户名与用户目录
   home.username = "fll";
   home.homeDirectory = "/home/fll";
-  programs.NvChad.enable = true;
 
   # 直接将当前文件夹的配置文件，链接到 Home 目录下的指定位置
   # home.file.".config/i3/wallpaper.jpg".source = ./wallpaper.jpg;
@@ -53,8 +50,7 @@
   #   "Xft.dpi" = 112;
   # };
   services.xremap = {
-    withHypr = true;
-    # userName = "fll";
+    withWlroots= true;
     yamlConfig = ''
       keymap:
         - name: Global
@@ -191,6 +187,7 @@
     glib
     glib-networking
     #cudaPackages.cuda_nvcc
+                    nvidia-container-toolkit
   ];
 
   home.sessionVariables = rec {

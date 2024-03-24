@@ -94,10 +94,8 @@
         fira-code
         intel-one-mono
         mononoki
-        nvidia-container-toolkit
         cudaPackagesGoogle.cudatoolkit
         cudaPackagesGoogle.cudnn_8_6
-
         (nerdfonts.override {fonts = ["JetBrainsMono" "FiraCode"];})
       ]
       ++ [
