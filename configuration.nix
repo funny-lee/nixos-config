@@ -94,8 +94,6 @@
         fira-code
         intel-one-mono
         mononoki
-        cudaPackagesGoogle.cudatoolkit
-        cudaPackagesGoogle.cudnn_8_6
         (nerdfonts.override {fonts = ["JetBrainsMono" "FiraCode"];})
       ]
       ++ [
@@ -241,7 +239,7 @@
   nix.settings.auto-optimise-store = true;
   # Enable the KDE Plasma Desktop Environment.
   services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma6.enable = true;
+  services.desktopManager.plasma6.enable = true;
 
   # Configure keymap in X11
   services.xserver = {
@@ -282,6 +280,8 @@
     extraGroups = ["networkmanager" "wheel" "docker"];
     packages = with pkgs; [
       # firefox
+      gmp4
+      czmq
       kate
       wget
       clash-meta

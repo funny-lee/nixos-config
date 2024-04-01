@@ -23,6 +23,7 @@
     ./coq.nix
     ./hypr
     ./packages.nix
+    ./nvimdots.nix
   ];
 
   # 注意修改这里的用户名与用户目录
@@ -50,7 +51,7 @@
   #   "Xft.dpi" = 112;
   # };
   services.xremap = {
-    withWlroots= true;
+    withWlroots = true;
     yamlConfig = ''
       keymap:
         - name: Global
@@ -65,11 +66,16 @@
     userName = "funny-lee";
     userEmail = "1750285541@qq.com";
   };
+  programs.neovim.enable = true;
 
   # 通过 home.packages 安装一些常用的软件
   # 这些软件将仅在当前用户下可用，不会影响系统级别的配置
   # 建议将所有 GUI 软件，以及与 OS 关系不大的 CLI 软件，都通过 home.packages 安装
   home.packages = with pkgs; [
+    cudaPackagesGoogle.cudatoolkit
+    cudaPackagesGoogle.cudnn_8_6
+    zlib
+    openblas
     wpsoffice
     nodePackages.pnpm
     firefox
@@ -78,6 +84,11 @@
     bpftrace
     ocaml
     opam
+    ocamlPackages.zmq
+    ocamlPackages.mlgmpidl
+    ocamlPackages.decompress
+    ocamlPackages.owl
+    ocamlPackages.utop
     ocamlformat
     ocaml-top
     ocamlPackages.findlib
@@ -187,7 +198,7 @@
     glib
     glib-networking
     #cudaPackages.cuda_nvcc
-                    nvidia-container-toolkit
+    nvidia-container-toolkit
   ];
 
   home.sessionVariables = rec {
@@ -257,7 +268,7 @@
     dotDir = ".config/zsh";
 
     enableCompletion = true;
-    enableAutosuggestions = true;
+    autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
 
     # .zshrc
