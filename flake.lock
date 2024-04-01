@@ -801,6 +801,22 @@
         "type": "github"
       }
     },
+    "nvimdots": {
+      "locked": {
+        "lastModified": 1711874084,
+        "narHash": "sha256-HyKkIEQU8CU8AbbbpN5MUsdwiVXmLEm3nfJywGxHJQI=",
+        "owner": "misumisumi",
+        "repo": "nvimdots",
+        "rev": "833fdcb401892c3a617f2aa8fc596cc039432dc9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "misumisumi",
+        "ref": "improve-nixos",
+        "repo": "nvimdots",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "anyrun": "anyrun",
@@ -817,6 +833,7 @@
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nixpkgs-wayland": "nixpkgs-wayland",
         "nur-ryan4yin": "nur-ryan4yin",
+        "nvimdots": "nvimdots",
         "rust-overlay": "rust-overlay",
         "wallpapers": "wallpapers",
         "xremap-flake": "xremap-flake"

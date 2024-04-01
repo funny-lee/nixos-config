@@ -66,7 +66,32 @@
     userName = "funny-lee";
     userEmail = "1750285541@qq.com";
   };
-  programs.neovim.enable = true;
+  programs.neovim = {
+    enable = true;
+    setBuildEnv = true;
+    withBuildTools = true;
+    withHaskell = true;
+    nvimdots = {
+      # Packages that require `include`, `lib`, `pkgconfig`
+      extraDependentPackages = with pkgs; [icu];
+      # Haskell packages can be easily installed with the `nvimdots` options.
+      extraHaskellPackages = hs: with hs; [ghcup];
+    };
+    extraPackages = with pkgs; [
+      go
+
+      # Some languages require the use of wrapper.
+      rWrapper.override
+      {
+        packages = with pkgs.rPackages; [xml2 lintr roxygen2];
+      }
+    ];
+    # Python and Lua packages can be easily installed with the corresponding `home-manager` options.
+    extraPython3Packages = ps:
+      with ps; [
+        numpy
+      ];
+  };
 
   # 通过 home.packages 安装一些常用的软件
   # 这些软件将仅在当前用户下可用，不会影响系统级别的配置
