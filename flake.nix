@@ -4,8 +4,6 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    # nvimdots.url = "github:ayamir/nvimdots";
-    nvimdots.url = "github:misumisumi/nvimdots/improve-nixos";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     # modern window compositor
@@ -23,10 +21,10 @@
     #   url = "github:codingkoi/nix-straight.el?ref=codingkoi/apply-librephoenixs-fix";
     #   flake = false;
     # };
-    # astronvim = {
-    #   url = "github:AstroNvim/AstroNvim/v3.36.0";
-    #   flake = false;
-    # };
+     astronvim = {
+       url = "github:AstroNvim/AstroNvim/v4.0.0";
+       flake = false;
+     };
     #
     nur-ryan4yin = {
       url = "github:ryan4yin/nur-packages";
@@ -79,8 +77,8 @@
     self,
     nixpkgs,
     home-manager,
+    astronvim,
     rust-overlay,
-    nvimdots,
     ...
   }: let
     inherit (inputs.nixpkgs) lib;

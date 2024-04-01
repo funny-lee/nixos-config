@@ -21,6 +21,23 @@
         "type": "github"
       }
     },
+    "astronvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1711976872,
+        "narHash": "sha256-ozDqofsrW63KBUe1wWEknagtbXKN0aaeEhVN7iksi3w=",
+        "owner": "AstroNvim",
+        "repo": "AstroNvim",
+        "rev": "cbf50a3d875fe9e17cddc2cb19cd447e544372b8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "AstroNvim",
+        "ref": "v4.0.0",
+        "repo": "AstroNvim",
+        "type": "github"
+      }
+    },
     "catppuccin-alacritty": {
       "flake": false,
       "locked": {
@@ -801,25 +818,10 @@
         "type": "github"
       }
     },
-    "nvimdots": {
-      "locked": {
-        "lastModified": 1711874084,
-        "narHash": "sha256-HyKkIEQU8CU8AbbbpN5MUsdwiVXmLEm3nfJywGxHJQI=",
-        "owner": "misumisumi",
-        "repo": "nvimdots",
-        "rev": "833fdcb401892c3a617f2aa8fc596cc039432dc9",
-        "type": "github"
-      },
-      "original": {
-        "owner": "misumisumi",
-        "ref": "improve-nixos",
-        "repo": "nvimdots",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "anyrun": "anyrun",
+        "astronvim": "astronvim",
         "catppuccin-alacritty": "catppuccin-alacritty",
         "catppuccin-bat": "catppuccin-bat",
         "catppuccin-btop": "catppuccin-btop",
@@ -833,7 +835,6 @@
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nixpkgs-wayland": "nixpkgs-wayland",
         "nur-ryan4yin": "nur-ryan4yin",
-        "nvimdots": "nvimdots",
         "rust-overlay": "rust-overlay",
         "wallpapers": "wallpapers",
         "xremap-flake": "xremap-flake"
