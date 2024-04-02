@@ -22,7 +22,7 @@
     #   flake = false;
     # };
      astronvim = {
-       url = "github:AstroNvim/AstroNvim/v4.0.0";
+       url = "github:AstroNvim/AstroNvim/v3.45.3";
        flake = false;
      };
     #
