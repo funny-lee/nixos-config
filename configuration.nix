@@ -230,8 +230,12 @@
     # note: ssh-copy-id will add user@your-machine after the public key
     # but we can remove the "@your-machine" part
   ];
+  hardware.opengl.driSupport32Bit = true;
   virtualisation.docker.enable = true;
   virtualisation.containers.cdi.dynamic.nvidia.enable = true;
+  virtualisation.docker.enableOnBoot = true;
+  virtualisation.docker.enableNvidia = true;
+  systemd.enableUnifiedCgroupHierarchy = false;
   # Optimise storage
   # you can alse optimise the store manually via:
   #    nix-store --optimise

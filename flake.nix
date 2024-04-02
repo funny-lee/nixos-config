@@ -21,10 +21,10 @@
     #   url = "github:codingkoi/nix-straight.el?ref=codingkoi/apply-librephoenixs-fix";
     #   flake = false;
     # };
-     astronvim = {
-       url = "github:AstroNvim/AstroNvim/v3.45.3";
-       flake = false;
-     };
+    astronvim = {
+      url = "github:AstroNvim/AstroNvim/v3.45.3";
+      flake = false;
+    };
     #
     nur-ryan4yin = {
       url = "github:ryan4yin/nur-packages";

@@ -30,7 +30,7 @@
     ''
       # custom cava config
     ''
-    + builtins.readFile "${catppuccin-cava}/mocha.cava";
+    + builtins.readFile "${catppuccin-cava}/themes/mocha.cava";
 
   programs = {
     mpv = {

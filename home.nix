@@ -65,7 +65,7 @@
     userName = "funny-lee";
     userEmail = "1750285541@qq.com";
   };
-programs.neovim.enable = true;
+  programs.neovim.enable = true;
   xdg.configFile = {
     astronvim = {
       onChange = "PATH=$PATH:${pkgs.git}/bin ${pkgs.neovim}/bin/nvim --headless +quitall";
@@ -75,13 +75,13 @@ programs.neovim.enable = true;
       onChange = "PATH=$PATH:${pkgs.git}/bin ${pkgs.neovim}/bin/nvim --headless +quitall";
       source = astronvim;
     };
+  };
 
-    };
-    
   # 通过 home.packages 安装一些常用的软件
   # 这些软件将仅在当前用户下可用，不会影响系统级别的配置
   # 建议将所有 GUI 软件，以及与 OS 关系不大的 CLI 软件，都通过 home.packages 安装
   home.packages = with pkgs; [
+    lean4
     cudaPackagesGoogle.cudatoolkit
     cudaPackagesGoogle.cudnn_8_6
     zlib
