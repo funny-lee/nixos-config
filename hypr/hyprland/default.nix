@@ -32,7 +32,7 @@ imports =[
       ];
     };
     package = hyprland.packages.${pkgs.system}.hyprland;
-    extraConfig = builtins.readFile ./hypr-conf/hyprland.conf;
+    extraConfig = builtins.readFile ./conf/hyprland.conf;
     # gammastep/wallpaper-switcher need this to be enabled.
     systemd.enable = true;
   };
