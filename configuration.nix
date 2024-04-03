@@ -231,7 +231,11 @@
     # note: ssh-copy-id will add user@your-machine after the public key
     # but we can remove the "@your-machine" part
   ];
-  hardware.opengl.driSupport32Bit = true;
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
+  };
   virtualisation.docker.enable = true;
   virtualisation.containers.cdi.dynamic.nvidia.enable = true;
   virtualisation.docker.enableOnBoot = true;
