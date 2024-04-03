@@ -3,8 +3,7 @@
   lib,
   ...
 }:
-with lib;
-{
+with lib; {
   options.modules.desktop.hyprland = {
     nvidia = mkEnableOption "whether nvidia GPU is used";
   };

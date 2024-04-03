@@ -5,12 +5,11 @@
   nur-ryan4yin,
   ...
 }: {
-imports =[
-./anyrun.nix
-./nvidia.nix
-./wayland-apps.nix
-
-];
+  imports = [
+    ./anyrun.nix
+    ./nvidia.nix
+    ./wayland-apps.nix
+  ];
   # NOTE:
   # We have to enable hyprland/i3's systemd user service in home-manager,
   # so that gammastep/wallpaper-switcher's user service can be start correctly!
@@ -23,6 +22,7 @@ imports =[
         "NIXOS_OZONE_WL,1" # for any ozone-based browser & electron apps to run on wayland
         "MOZ_ENABLE_WAYLAND,1" # for firefox to run on wayland
         "MOZ_WEBRENDER,1"
+        "WLR_DRM_DEVICES,/dev/dri/card1:/dev/dri/card0"
         # misc
         "_JAVA_AWT_WM_NONREPARENTING,1"
         "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
@@ -47,25 +47,25 @@ imports =[
   # hyprland configs, based on https://github.com/notwidow/hyprland
   xdg.configFile = {
     "hypr/mako" = {
-      source = ../conf/mako;
+      source = ./conf/mako;
       recursive = true;
     };
     "hypr/scripts" = {
-      source = ../conf/scripts;
+      source = ./conf/scripts;
       recursive = true;
     };
     "hypr/waybar" = {
-      source = ../conf/waybar;
+      source = ./conf/waybar;
       recursive = true;
     };
     "hypr/wlogout" = {
-      source = ../conf/wlogout;
+      source = ./conf/wlogout;
       recursive = true;
     };
 
     # music player - mpd
     "mpd" = {
-      source = ../conf/mpd;
+      source = ./conf/mpd;
       recursive = true;
     };
   };

@@ -12,6 +12,10 @@
     rust-overlay.url = "github:oxalica/rust-overlay";
     xremap-flake.url = "github:xremap/nix-flake";
     # anyrun - a wayland launcher
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     anyrun = {
       url = "github:Kirottu/anyrun";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -79,6 +83,7 @@
     home-manager,
     astronvim,
     rust-overlay,
+    hyprland,
     ...
   }: let
     inherit (inputs.nixpkgs) lib;
@@ -96,7 +101,7 @@
       # 这里的 nixos-test 替换成你的主机名称
       nixos = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        # specialArgs = {inherit inputs;};
+        specialArgs = {inherit inputs;};
         modules = [
           ./configuration.nix
           ./hyprland.nix

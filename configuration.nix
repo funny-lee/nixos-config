@@ -4,6 +4,7 @@
 {
   config,
   pkgs,
+  inputs,
   ...
 }: {
   imports = [
@@ -307,6 +308,10 @@
     abella
   ];
   # compile
+    programs.hyprland = {
+    enable = true;
+    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+  };
   programs.zsh.enable = true;
   programs.nix-ld.enable = true;
   # Some programs need SUID wrappers, can be configured further or are

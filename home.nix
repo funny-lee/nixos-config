@@ -217,7 +217,6 @@
     # HTTP_PROXY = "127.0.0.1:7890";
     # HTTPS_PROXY = "127.0.0.1:7890";
   };
-
   # 启用 starship，这是一个漂亮的 shell 提示符
   programs.starship = {
     enable = true;

@@ -55,8 +55,6 @@
       #  enable = true;
       #  hidpi = true;
       #};
-
-      # enableNvidiaPatches = true;
     };
 
     # monitor backlight control
