@@ -13,7 +13,7 @@
     xremap-flake.url = "github:xremap/nix-flake";
     # anyrun - a wayland launcher
     hyprland = {
-      url = "github:hyprwm/Hyprland";
+      url = "github:hyprwm/Hyprland/v0.37.1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     anyrun = {
