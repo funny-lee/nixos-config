@@ -20,9 +20,10 @@
     ./neofetch
     ./rust
     ./development.nix
-    ./coq.nix
     ./hypr
     ./packages.nix
+    ./emacs
+    ./wezterm.nix
   ];
 
   # 注意修改这里的用户名与用户目录
@@ -81,6 +82,7 @@
   # 这些软件将仅在当前用户下可用，不会影响系统级别的配置
   # 建议将所有 GUI 软件，以及与 OS 关系不大的 CLI 软件，都通过 home.packages 安装
   home.packages = with pkgs; [
+  nixd
     lean4
     cudaPackagesGoogle.cudatoolkit
     cudaPackagesGoogle.cudnn_8_6
@@ -298,6 +300,7 @@
       eval "$(zoxide init zsh)"
       export RUSTUP_DIST_SERVER="https://rsproxy.cn"
       export RUSTUP_UPDATE_ROOT="https://rsproxy.cn/rustup"
+      [[ ! -r /home/fll/.opam/opam-init/init.zsh ]] || source /home/fll/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
     '';
 
     # basically aliases for directories:
@@ -307,6 +310,7 @@
       stuff = "$HOME/stuff";
       media = "/run/media/$USER";
       junk = "$HOME/stuff/other";
+      conf = "$HOME/.config";
     };
 
     # Tweak settings for history

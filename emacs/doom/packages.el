@@ -7,6 +7,7 @@
 
 (package! super-save)
 (package! rime)
+(package! proof-general)
 (package! wakatime-mode
   :recipe
   (:host github :repo "wakatime/wakatime-mode" :files
@@ -15,10 +16,10 @@
 (package! nushell-mode :recipe
   (:host github :repo "mrkkrp/nushell-mode"))
 
-(package! copilot
-  :recipe
-  (:host github :repo "copilot-emacs/copilot.el" :files
-         ("*.el" "dist")))
+;; (package! copilot
+;;   :recipe
+;;   (:host github :repo "copilot-emacs/copilot.el" :files
+;;          ("*.el" "dist")))
 
 ;; To install SOME-PACKAGE from MELPA, ELPA or emacsmirror:
 ;; (package! some-package)

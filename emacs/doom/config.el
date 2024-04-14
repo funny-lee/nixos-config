@@ -159,17 +159,17 @@
 ;; save on find-file
 (add-to-list 'super-save-hook-triggers 'find-file-hook)
 
-(use-package! copilot
-  :hook
-  (prog-mode . copilot-mode)
-  :bind
-  (:map copilot-completion-map
-        ("<tab>" . 'copilot-accept-completion)
-        ("TAB" . 'copilot-accept-completion)
-        ("C-TAB" . 'copilot-accept-completion-by-word)
-        ("C-<tab>" . 'copilot-accept-completion-by-word))
-  :config
-  (copilot-mode +1))
+;; (use-package! copilot
+;;   :hook
+;;   (prog-mode . copilot-mode)
+;;   :bind
+;;   (:map copilot-completion-map
+;;         ("<tab>" . 'copilot-accept-completion)
+;;         ("TAB" . 'copilot-accept-completion)
+;;         ("C-TAB" . 'copilot-accept-completion-by-word)
+;;         ("C-<tab>" . 'copilot-accept-completion-by-word))
+;;   :config
+;;   (copilot-mode +1))
 
 (use-package! wakatime-mode :ensure t)
 

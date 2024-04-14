@@ -95,7 +95,7 @@
         fira-code
         intel-one-mono
         mononoki
-        (nerdfonts.override {fonts = ["JetBrainsMono" "FiraCode"];})
+        (nerdfonts.override {fonts = ["JetBrainsMono" "FiraCode" "Mononoki"];})
       ]
       ++ [
         nodePackages_latest.pnpm

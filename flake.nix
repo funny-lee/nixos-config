@@ -20,6 +20,10 @@
       url = "github:Kirottu/anyrun";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    doomemacs = {
+      url = "github:doomemacs/doomemacs";
+      flake = false;
+    };
     # nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
     #  nix-straight = {
     #   url = "github:codingkoi/nix-straight.el?ref=codingkoi/apply-librephoenixs-fix";
@@ -84,6 +88,7 @@
     astronvim,
     rust-overlay,
     hyprland,
+    doomemacs,
     ...
   }: let
     inherit (inputs.nixpkgs) lib;
