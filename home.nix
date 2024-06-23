@@ -11,6 +11,7 @@
   ...
 }: {
   imports = [
+    ./nixvim
     ./proxychains
     ./tmux
     ./alacritty.nix
@@ -66,27 +67,16 @@
     userName = "funny-lee";
     userEmail = "1750285541@qq.com";
   };
-  programs.neovim.enable = true;
-  xdg.configFile = {
-    astronvim = {
-      onChange = "PATH=$PATH:${pkgs.git}/bin ${pkgs.neovim}/bin/nvim --headless +quitall";
-      source = ./astronvim;
-    };
-    nvim = {
-      onChange = "PATH=$PATH:${pkgs.git}/bin ${pkgs.neovim}/bin/nvim --headless +quitall";
-      source = astronvim;
-    };
-  };
-
+  
   # 通过 home.packages 安装一些常用的软件
   # 这些软件将仅在当前用户下可用，不会影响系统级别的配置
   # 建议将所有 GUI 软件，以及与 OS 关系不大的 CLI 软件，都通过 home.packages 安装
   home.packages = with pkgs; [
-  nixd
+    nixd
     lean4
     cudaPackagesGoogle.cudatoolkit
-    cudaPackagesGoogle.cudnn_8_6
     zlib
+    libev
     openblas
     wpsoffice
     nodePackages.pnpm
@@ -101,6 +91,10 @@
     ocamlPackages.decompress
     ocamlPackages.owl
     ocamlPackages.utop
+    ocamlPackages.core
+    ocamlPackages.base
+    ocamlPackages.ssl
+    ocamlPackages.ppx_deriving
     ocamlformat
     ocaml-top
     ocamlPackages.findlib
@@ -175,7 +169,7 @@
     texlive.combined.scheme-full
     flatpak
     #  nodejs
-    nodejs_21
+    nodejs_22
     deno
     # R
     racket
@@ -203,8 +197,8 @@
     ethtool
     pciutils # lspci
     usbutils # lsusb
-    gdb
-    gdbgui
+    #gdb
+    #gdbgui
     qq
 
     glib

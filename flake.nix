@@ -138,7 +138,7 @@
       # my own cache server
       # "https://ryan4yin.cachix.org"
       # replace official cache with a mirror located in China
-      # "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
+      "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
       "https://mirrors.ustc.edu.cn/nix-channels/store"
       "https://cache.nixos.org"
       "https://anyrun.cachix.org"

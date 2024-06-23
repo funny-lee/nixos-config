@@ -5,7 +5,6 @@
 }: {
   home = {
     packages = with pkgs; [
-      coqPackages.gaia
       coq
       coqPackages.coq-lsp
       coqPackages.stdpp

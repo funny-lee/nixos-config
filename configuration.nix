@@ -237,7 +237,8 @@
     driSupport32Bit = true;
   };
   virtualisation.docker.enable = true;
-  virtualisation.containers.cdi.dynamic.nvidia.enable = true;
+  # virtualisation.containers.cdi.dynamic.nvidia.enable = true;
+hardware.nvidia-container-toolkit.enable=true;
   virtualisation.docker.enableOnBoot = true;
   virtualisation.docker.enableNvidia = true;
   systemd.enableUnifiedCgroupHierarchy = false;
@@ -247,7 +248,7 @@
   # https://nixos.org/manual/nix/stable/command-ref/conf-file.html#conf-auto-optimise-store
   nix.settings.auto-optimise-store = true;
   # Enable the KDE Plasma Desktop Environment.
-  services.xserver.displayManager.sddm.enable = true;
+  services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
 
   # Configure keymap in X11

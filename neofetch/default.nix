@@ -5,7 +5,7 @@
   ...
 }: {
   home.packages = [pkgs.neofetch];
-   home.file.".config/neofetch/config.conf".text = ''
+  home.file.".config/neofetch/config.conf".text = ''
     print_info() {
     prin " \n \n ╭───────┤ $(color 5) NixOS $(color 15)├───────╮"
     info " " kernel
@@ -38,10 +38,10 @@
     separator=""
 
     image_backend="ascii" # ascii kitty iterm2
-    image_source="/home/demeter/.config/neofetch/image.png" # auto /path/to/img /path/to/ascii
+    image_source="/home/fll/.config/neofetch/image.png" # auto /path/to/img /path/to/ascii
     image_size="200px" # auto 00px 00% none
 
-    ascii_distro="NixOS_small"
+    ascii_distro="NixOS"
     ascii_colors=(distro)
     ascii_bold="on"
 

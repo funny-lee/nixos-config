@@ -36,15 +36,15 @@
         xterm.enable = false;
       };
 
-      displayManager = {
+          };
+displayManager = {
         defaultSession = "hyprland";
-        lightdm.enable = false;
         sddm = {
           enable = true;
           # wayland = true;
         };
       };
-    };
+
   };
 
   programs = {

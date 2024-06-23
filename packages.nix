@@ -124,7 +124,7 @@
       else [
         #-- verilog / systemverilog
         verible
-        gdb
+        # gdb
       ]
     );
 }

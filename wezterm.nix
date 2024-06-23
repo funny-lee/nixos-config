@@ -1,12 +1,11 @@
- { pkgs, ... }:
-let
+{pkgs, ...}: let
   inherit (pkgs) stdenv;
   inherit (stdenv) isLinux;
   zsh_path_lua_str = "'${pkgs.zsh}/bin/zsh'";
 in {
   home = {
     packages = with pkgs; [
-      (nerdfonts.override { fonts = [ "FiraCode" ]; })
+      (nerdfonts.override {fonts = ["FiraCode"];})
       maple-mono
     ];
     # sessionVariables = { TERM = "wezterm"; };
@@ -42,7 +41,11 @@ in {
     extraConfig = ''
       local wezterm = require('wezterm')
       local config = wezterm.config_builder()
-      local os_name = ${if isLinux then "'linux'" else "'macos'"}
+      local os_name = ${
+        if isLinux
+        then "'linux'"
+        else "'macos'"
+      }
       local smart_splits = wezterm.plugin.require('https://github.com/mrjones2014/smart-splits.nvim')
 
       -- macOS specific settings
