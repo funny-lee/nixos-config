@@ -7,11 +7,9 @@
   inputs,
   xremap-flake,
   args,
-  astronvim,
   ...
 }: {
   imports = [
-    ./nixvim
     ./proxychains
     ./tmux
     ./alacritty.nix
@@ -74,7 +72,6 @@
   home.packages = with pkgs; [
     nixd
     lean4
-    cudaPackagesGoogle.cudatoolkit
     zlib
     libev
     openblas
@@ -206,7 +203,7 @@
     #cudaPackages.cuda_nvcc
   ];
 
-  home.sessionVariables = rec {
+  home.sessionVariables = {
     EDITOR = "nvim";
 
     GIO_MODULE_DIR = "${pkgs.glib-networking}/lib/gio/modules/";

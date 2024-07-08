@@ -233,7 +233,6 @@
   ];
   hardware.opengl = {
     enable = true;
-    driSupport = true;
     driSupport32Bit = true;
   };
   virtualisation.docker.enable = true;
@@ -337,10 +336,10 @@ hardware.nvidia-container-toolkit.enable=true;
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
-  systemd.services.nix-daemon.environment = {
-    http_proxy = "127.0.0.1:7890";
-    https_proxy = "127.0.0.1:7890";
-  };
+  # systemd.services.nix-daemon.environment = {
+  #   http_proxy = "127.0.0.1:7890";
+  #   https_proxy = "127.0.0.1:7890";
+  # };
   # Set environment variables
   environment.variables = {
     XDG_DATA_HOME = "$HOME/.local/share";

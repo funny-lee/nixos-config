@@ -16,6 +16,7 @@
       url = "github:hyprwm/Hyprland/v0.37.1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    Neve.url = "github:redyf/Neve";
     anyrun = {
       url = "github:Kirottu/anyrun";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -85,7 +86,6 @@
     self,
     nixpkgs,
     home-manager,
-    astronvim,
     rust-overlay,
     hyprland,
     doomemacs,
@@ -112,7 +112,7 @@
           ./hyprland.nix
           ({pkgs, ...}: {
             nixpkgs.overlays = [rust-overlay.overlays.default];
-            environment.systemPackages = [pkgs.rust-bin.stable.latest.default];
+            environment.systemPackages = [pkgs.rust-bin.stable.latest.default inputs.Neve.packages.${pkgs.system}.default];
           })
           # 将 home-manager 配置为 nixos 的一个 module
           # 这样在 nixos-rebuild switch 时，home-manager 配置也会被自动部署
